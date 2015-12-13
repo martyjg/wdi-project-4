@@ -1,4 +1,5 @@
-angular.module("MySpace", [])
+angular
+  .module("MySpace")
   .controller("YoutubesController", YoutubesController);
 
 YoutubesController.$inject = ["$http"];
