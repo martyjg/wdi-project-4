@@ -8,5 +8,21 @@
 </head>
 <body>
 <h1>Hello</h1>
+
+<section id="Register">
+  <label for="username">Username</label>
+  <input type="text" name="username" placeholder="Username" ng-model="users.user.username">
+
+  <label for="fullname">Full name</label>
+  <input type="text" name="fullname" placeholder="Fullname" ng-model="users.user.fullname">
+
+  <label for="email">Email</label>
+  <input type="text" name="email" placeholder="Email" ng-model="users.user.email" required>
+
+  <label for="password">Password</label>
+  <input type="password" name="password" placeholder="Password" ng-model="users.user.password" required>
+</section>
+
+
 </body>
 </html>
