@@ -2,8 +2,8 @@ angular
   .module('MySpace')
   .controller('UsersController', UsersController);
 
-UsersController.$inject = ['User', 'TokenService', '$state', '$auth'];
-function UsersController(User, TokenService, $state, $auth){
+UsersController.$inject = ['User', 'TokenService', '$state'];
+function UsersController(User, TokenService, $state){
 
   var self = this;
 
@@ -31,7 +31,7 @@ function UsersController(User, TokenService, $state, $auth){
     var token = res.token ? res.token : null;
     if (token) {
       self.getUsers();
-      $state.go('home');
+      // $state.go('home');
     }
     // console.log(res);
     self.user = TokenService.decodeToken();
