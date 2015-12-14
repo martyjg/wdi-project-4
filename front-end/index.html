@@ -12,10 +12,14 @@
 
   <script type="text/javascript" src="./js/services/tokenService.js"></script>
   <script type="text/javascript" src="./js/services/authInterceptor.js"></script>
+  <script type="text/javascript" src="./js/services/currentUser.js"></script>
   <script type="text/javascript" src="./js/models/user.js"></script>
   <script type="text/javascript" src="./js/controllers/usersController.js"></script>
   <script type="text/javascript" src="./js/controllers/youtubesController.js"></script>
 
+  <link rel="stylesheet" type="text/css" href="./css/reset.css">
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
   <link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 <body ng-controller="UsersController as users">
@@ -43,13 +47,13 @@
       <input type="password" name="password" placeholder="Password" ng-model="users.user.password" required>
 
       <button type="submit">Register</button>
-      
+
     </form>
   </section>
 
   <section id="login" ng-hide="users.checkLoggedIn()">
     <form name="users.loginForm" ng-submit="users.login()" novalidate>
-      
+
       <label for="email">Email</label>
       <input type="text" name="email" placeholder="Enter your email" ng-model="users.user.email" required>
 
@@ -60,6 +64,9 @@
 
     </form>
   </section>
+
+  <main ui-view></main>
+
 
 </body>
 </html>

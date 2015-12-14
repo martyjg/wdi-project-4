@@ -2,8 +2,8 @@ angular
   .module('MySpace')
   .controller('UsersController', UsersController);
 
-UsersController.$inject = ['User', 'TokenService', '$state'];
-function UsersController(User, TokenService, $state){
+UsersController.$inject = ['User', 'TokenService', 'CurrentUser', '$state'];
+function UsersController(User, TokenService, CurrentUser, $state){
 
   var self = this;
 
@@ -31,7 +31,7 @@ function UsersController(User, TokenService, $state){
     var token = res.token ? res.token : null;
     if (token) {
       self.getUsers();
-      // $state.go('home');
+      $state.go('profile');
     }
     // console.log(res);
     self.user = TokenService.decodeToken();
@@ -63,11 +63,11 @@ function UsersController(User, TokenService, $state){
   }
 
   // Checks if the user is logged in, runs every time the page is loaded
-  // if (CurrentUser.getUser()) {
-  //   self.getUsers();
-  //   // self.user = TokenService.decodeToken();
-  //   // console.log(self.user);
-  // }
+  if (CurrentUser.getUser()) {
+    self.getUsers();
+    // self.user = TokenService.decodeToken();
+    console.log(self.user);
+  }
 
 return self
 }
