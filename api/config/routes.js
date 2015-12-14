@@ -10,4 +10,7 @@ router.post('/register', authenticationsController.register);
 router.route('/users')
   .get(usersController.usersIndex)
 
+router.route('/users/:id') 
+  .get(usersController.usersShow)
+
 module.exports = router;
