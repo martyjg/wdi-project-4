@@ -1,5 +1,5 @@
 angular
-  .module("MySpace", ['ngResource', 'angular-jwt', 'ui.router'])
+  .module("MySpace", ['ngResource', 'angular-jwt', 'ui.router', 'ngFileUpload'])
   .constant('API', 'http://localhost:3000/api')
   .config(MainRouter)
   .config(function($httpProvider){
@@ -32,3 +32,4 @@ function MainRouter($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise("/");
 }
+

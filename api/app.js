@@ -23,6 +23,23 @@ mongoose.connect(config.database);
 
 require('./config/passport')(passport);
 
+var upload = multer({
+  storage: multer.diskStorage({
+    destination: function(req, file, next) {
+      next(null, './uploads');
+    },
+    filename: function(req, file, next) {
+      var ext = '.' + file.mimetype.replace('image/', '');
+      var filename = uuid.v1() + ext;
+      next(null, filename);
+    }
+  })
+});
+
+app.post('/upload', upload.single('file'), function(req, res) {
+  return res.status(200).json({ filename: req.file.filename });
+});
+
 app.use(methodOverride(function(req, res){
   if (req.body && typeof req.body === 'object' && '_method' in req.body) {
     var method = req.body._method
