@@ -1,6 +1,7 @@
 var express        = require('express');
 var cors           = require('cors');
 var path           = require('path');
+var multer         = require('multer');
 var morgan         = require('morgan');
 var bodyParser     = require('body-parser');
 var mongoose       = require('mongoose');
@@ -9,6 +10,10 @@ var cookieParser   = require("cookie-parser");
 var methodOverride = require("method-override");
 var jwt            = require('jsonwebtoken');
 var expressJWT     = require('express-jwt');
+var uuid           = require('uuid');
+
+var PORT           = process.env.PORT || 3000;
+
 var app            = express();
 
 var config         = require('./config/config');
@@ -51,6 +56,6 @@ app.use(function (err, req, res, next) {
 var routes = require('./config/routes');
 app.use("/api", routes);
 
-app.listen(3000);
+app.listen(PORT);
 
-console.log("Listening on 3000...")
+console.log("Listening on..." + PORT)
