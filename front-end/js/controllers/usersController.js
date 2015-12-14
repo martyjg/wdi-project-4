@@ -19,6 +19,7 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
   self.upload        = upload
 
   self.authenticate = function(provider) {
+    console.log(provider)
     $auth.authenticate(provider);
   };
 
@@ -29,10 +30,8 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
   }
 
   function editProfile() {
-    console.log("The button is working")
     // console.log(currentUser)
     User.update({id: self.user._id}, self.user ,function(user) {
-      console.log(user)
     })
   }
 
@@ -42,7 +41,6 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
       self.getUsers();
       $state.go('profile');
     }
-    // console.log(res);
     self.user = TokenService.decodeToken();
     CurrentUser.saveUser(self.user)
   }
@@ -85,6 +83,8 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
     self.getUsers();
     self.user = TokenService.decodeToken();
   }
+
+  self.getUsers();
 
 return self
 }

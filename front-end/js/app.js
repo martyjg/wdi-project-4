@@ -14,7 +14,7 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     templateUrl: "home.html"
   })
   .state('profile', {
-    url: "/users/:id",
+    url: "/users/id",
     templateUrl: "profile.html"
   })
   .state('register', {

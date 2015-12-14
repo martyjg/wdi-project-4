@@ -29,6 +29,8 @@ var upload = multer({
       next(null, './uploads');
     },
     filename: function(req, file, next) {
+      // console.log("This be the request", req.body)
+      console.log("This be the file", file)
       var ext = '.' + file.mimetype.replace('image/', '');
       var filename = uuid.v1() + ext;
       next(null, filename);

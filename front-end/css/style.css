@@ -26,6 +26,11 @@ header {
   margin: 0 auto;
 }
 
+#home {
+  margin: 0 auto;
+  width: 800px;
+}
+
 .user-image img {
   height: 100px;
 }
