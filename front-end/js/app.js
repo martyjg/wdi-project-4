@@ -4,14 +4,22 @@ angular
   .config(MainRouter)
   .config(function($httpProvider){
     $httpProvider.interceptors.push('authInterceptor')
-})
+  })
 
 function MainRouter($stateProvider, $urlRouterProvider) {
-  
+
   $stateProvider
-  .state('profile', {
+  .state('home', {
     url: "/",
+    templateUrl: "home.html"
+  })
+  .state('profile', {
+    url: "/users/:id",
     templateUrl: "profile.html"
+  })
+  .state('register', {
+    url: "/register",
+    templateUrl: "register.html"
   })
 
   $urlRouterProvider.otherwise("/");

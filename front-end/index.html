@@ -31,40 +31,6 @@
     <li ng-show="users.checkLoggedIn()"><a href="#" ng-click="users.myAccount()">My Account</a></li>
   </div>
 
-  <section id="register" ng-hide="users.checkLoggedIn()">
-    <form name="users.registerForm" ng-submit="users.register()" novalidate>
-
-      <label for="username">Username</label>
-      <input type="text" name="username" placeholder="Username" ng-model="users.user.username">
-
-      <label for="fullname">Full name</label>
-      <input type="text" name="fullname" placeholder="Fullname" ng-model="users.user.fullname">
-
-      <label for="email">Email</label>
-      <input type="text" name="email" placeholder="Email" ng-model="users.user.email" required>
-
-      <label for="password">Password</label>
-      <input type="password" name="password" placeholder="Password" ng-model="users.user.password" required>
-
-      <button type="submit">Register</button>
-
-    </form>
-  </section>
-
-  <section id="login" ng-hide="users.checkLoggedIn()">
-    <form name="users.loginForm" ng-submit="users.login()" novalidate>
-
-      <label for="email">Email</label>
-      <input type="text" name="email" placeholder="Enter your email" ng-model="users.user.email" required>
-
-      <label for="password">Password</label>
-      <input type="password" name="password" placeholder="Enter your password" ng-model="users.user.password" required>
-
-      <button type="submit">Login</button>
-
-    </form>
-  </section>
-
   <main ui-view></main>
 
 

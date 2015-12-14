@@ -1,0 +1,14 @@
+<section id="login" ng-hide="users.checkLoggedIn()">
+  <form name="users.loginForm" ng-submit="users.login()" novalidate>
+
+    <label for="email">Email</label>
+    <input type="text" name="email" placeholder="Enter your email" ng-model="users.user.email" required>
+
+    <label for="password">Password</label>
+    <input type="password" name="password" placeholder="Enter your password" ng-model="users.user.password" required>
+
+    <button type="submit">Login</button><a href="#" ui-sref="register">Register</a>
+
+  </form>
+</section>
+
