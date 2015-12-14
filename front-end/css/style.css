@@ -26,15 +26,16 @@ header {
   margin: 0 auto;
 }
 
+.user-image img {
+  height: 100px;
+}
+
 .left-col {
   background-color: red;
-  /*padding: 0 10px;*/
   margin: 10px 0;
 }
 
 .right-col {
   background-color: cyan;
-  /*padding: 0 10px;*/
   margin: 10px 0;
-
 }
