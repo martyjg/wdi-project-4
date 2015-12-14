@@ -21,6 +21,14 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     url: "/register",
     templateUrl: "register.html"
   })
+  .state('album', {
+    url: "/users/:id",
+    templateUrl: "album.html"
+  })
+  .state('edit', {
+    url: "/users/:id/edit",
+    templateUrl: "edit.html"
+  })
 
   $urlRouterProvider.otherwise("/");
 }

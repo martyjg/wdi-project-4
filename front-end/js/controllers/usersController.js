@@ -11,6 +11,7 @@ function UsersController(User, TokenService, CurrentUser, $state){
   self.user          = {};
   self.getUsers      = getUsers;
   self.register      = register;
+  self.editProfile   = editProfile;
   self.login         = login;
   self.logout        = logout;
   self.checkLoggedIn = checkLoggedIn;
@@ -19,14 +20,19 @@ function UsersController(User, TokenService, CurrentUser, $state){
     $auth.authenticate(provider);
   };
 
-  // GETs all the users from the api
   function getUsers() {
     User.query(function(data){
      return self.all = data.users;
    });
   }
 
-  // Actions to carry once register or login forms have been submitted
+  function editProfile() {
+    console.log("The button is working")
+    User.update(function() {
+      console.log("This is an update")
+    })
+  }
+
   function handleLogin(res) {
     var token = res.token ? res.token : null;
     if (token) {
@@ -38,17 +44,14 @@ function UsersController(User, TokenService, CurrentUser, $state){
     // CurrentUser.saveUser(self.user)
   }
 
-  // POSTS the new user to register to the API
   function register() {
     User.register(self.user, handleLogin);
   }
 
-  // POSTS the new user to login to the API
   function login() {
     User.login(self.user, handleLogin);
   }
 
-  // A function to remove token form local storage and log user out
   function logout() {
     TokenService.removeToken();
     self.all  = [];
@@ -56,17 +59,14 @@ function UsersController(User, TokenService, CurrentUser, $state){
     // CurrentUser.clearUser();
   }
 
-  // Checks if the user is logged in
   function checkLoggedIn() {
     var loggedIn = !!TokenService.getToken();
     return loggedIn;
   }
 
-  // Checks if the user is logged in, runs every time the page is loaded
   if (CurrentUser.getUser()) {
     self.getUsers();
-    // self.user = TokenService.decodeToken();
-    console.log(self.user);
+    self.user = TokenService.decodeToken();
   }
 
 return self

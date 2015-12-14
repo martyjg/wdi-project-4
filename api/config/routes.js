@@ -12,5 +12,6 @@ router.route('/users')
 
 router.route('/users/:id') 
   .get(usersController.usersShow)
+  .put(usersController.usersUpdate)
 
 module.exports = router;
