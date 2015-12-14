@@ -14,17 +14,27 @@ header {
   padding: 5px;
 }
 
+.top-nav li {
+  list-style: none;
+  float: right;
+  padding: 0 5px;
+}
+
 #profile {
   background-color: grey;
-  width: 790px;
-  padding: 5px;
+  width: 800px;
   margin: 0 auto;
 }
 
 .left-col {
   background-color: red;
+  /*padding: 0 10px;*/
+  margin: 10px 0;
 }
 
 .right-col {
   background-color: cyan;
+  /*padding: 0 10px;*/
+  margin: 10px 0;
+
 }

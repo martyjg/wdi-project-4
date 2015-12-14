@@ -1,12 +1,32 @@
-<div id="profile" class="pure-g">
-<!-- <h1 ng-show="users.checkLoggedIn()">HELLO  THIS IS THE PROFILE PAGE</h1> -->
+<section ng-show="users.checkLoggedIn()" id="profile" class="pure-g">
+  <!-- <h1 ng-show="users.checkLoggedIn()">HELLO  THIS IS THE PROFILE PAGE</h1> -->
 
-<div class="pure-u-md-10-24 pure-u-1 left-col">
-{{ users.user.local.username }}
-</div>
+  <div class="pure-u-md-10-24 pure-u-1 left-col">
 
-<div class="pure-u-md-14-24 pure-u-1 right-col">
-wordup
-</div> 
+    <div id="profile-image-status" class="pure-g">
+      <div class="pure-u-1 user-name-header">
+        <h1 class="user-name">{{ users.user.local.username }}</h1>
+        <span>USERS STATUS</span>
+      </div>
 
-</div>
+      <div class="pure-u-10-24 user-image">
+        USER IMAGE
+      </div>
+
+      <div class="pure-u-14-24 user-last-login-views">
+        USER LAST LOGIN AND VIEWS
+      </div>
+    </div>
+
+    <div class="pure-u-1 user-mood-pics">
+    <span>USERS MOOD</span>
+    <span>SEE MY PICS?</span>
+    </div>
+
+  </div>
+
+  <div class="pure-u-md-14-24 pure-u-1 right-col">
+    wordup
+  </div> 
+
+</section>
