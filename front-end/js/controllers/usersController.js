@@ -28,8 +28,9 @@ function UsersController(User, TokenService, CurrentUser, $state){
 
   function editProfile() {
     console.log("The button is working")
-    User.update(function() {
-      console.log("This is an update")
+    // console.log(currentUser)
+    User.update({id: self.user._id}, self.user ,function(user) {
+      console.log(user)
     })
   }
 
@@ -41,7 +42,7 @@ function UsersController(User, TokenService, CurrentUser, $state){
     }
     // console.log(res);
     self.user = TokenService.decodeToken();
-    // CurrentUser.saveUser(self.user)
+    CurrentUser.saveUser(self.user)
   }
 
   function register() {
@@ -56,7 +57,7 @@ function UsersController(User, TokenService, CurrentUser, $state){
     TokenService.removeToken();
     self.all  = [];
     self.user = {};
-    // CurrentUser.clearUser();
+    CurrentUser.clearUser();
   }
 
   function checkLoggedIn() {
