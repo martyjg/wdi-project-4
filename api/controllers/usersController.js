@@ -25,6 +25,7 @@ function usersUpdate(req, res){
     if (req.body.local.username) user.local.username = req.body.local.username;
     if (req.body.local.fullname) user.local.fullname = req.body.local.fullname;
     if (req.body.local.picture) user.local.picture = req.body.local.picture;
+    if (req.body.requests) user.requests.push(req.body.requests);
 
 
     user.save(function(err) {

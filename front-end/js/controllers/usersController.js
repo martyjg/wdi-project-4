@@ -18,7 +18,7 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
   self.login         = login;
   self.logout        = logout;
   self.checkLoggedIn = checkLoggedIn;
-  self.upload        = upload
+  self.upload        = upload;
 
   self.authenticate = function(provider) {
     console.log(provider)
@@ -45,8 +45,14 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
     })
   }
 
-  function sendRequest() {
-    console.log("Trying to send a request")
+  function sendRequest(user) {
+    self.user = user;
+    var userId = user._id;
+    var currentUserId = CurrentUser.CurrentLoggedIn._id;
+    self.user.requests.push(CurrentUser.CurrentLoggedIn._id);
+    User.update({id: self.user._id}, self.user, function(user) {
+      console.log(user);
+    })
   }
 
   function handleLogin(res) {
