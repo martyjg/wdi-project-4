@@ -57,7 +57,6 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
   }
 
   function denyRequest(user) {
-    console.log("this shit is working now")
     console.log(user);
   }
 

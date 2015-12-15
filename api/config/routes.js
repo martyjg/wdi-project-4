@@ -16,5 +16,7 @@ router.route('/users/:id')
 
 router.route('/users/:id/friendrequest')
   .put(usersController.usersSendFriendRequest)
+  .delete(usersController.usersDenyFriendRequest)
+
 
 module.exports = router;

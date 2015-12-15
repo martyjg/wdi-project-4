@@ -8,10 +8,10 @@ function usersIndex(req, res) {
 }
 
 function usersShow(req, res){
-User.findById(req.params.id).populate("requests").exec(function(err, user) {
-  if (err) return res.status(404).json({message: 'Something went wrong.'});
-  res.status(200).json({ user: user });
-})
+  User.findById(req.params.id).populate("requests").exec(function(err, user) {
+    if (err) return res.status(404).json({message: 'Something went wrong.'});
+    res.status(200).json({ user: user });
+  })
 }
 
 function usersUpdate(req, res){
@@ -54,7 +54,7 @@ function usersUpdate(req, res){
   });
 }
 
-function usersSendFriendRequest(req, res){
+function usersSendFriendRequest(req, res) {
   var currentUser = req.body;
   User.findById(req.params.id, function(err, user){
     for (i = 0; i < user.requests.length; i++) {
@@ -64,11 +64,23 @@ function usersSendFriendRequest(req, res){
       }
     }
     user.requests.push(currentUser);
+
+  })
+}
+
+function usersDenyFriendRequest(req, res) {
+  var deniedUserId = req.body._id
+  User.findById(req.params.id, function(err, user) {
+    for (i = 0; i < user.requests.length; i++) {
+      if (user.requests[i] == deniedUserId) {
+        user.requests.pull(deniedUserId);
+        console.log(user.requests);
+      } 
+    }
     user.save(function(err){
       if (err) return res.status(500).json({message: "Something went wrong!"});
 
       res.status(201).json({message: 'Request Sent.', user: user});
-
     })
   })
 }
@@ -78,5 +90,6 @@ module.exports = {
   usersIndex:  usersIndex,
   usersShow: usersShow,
   usersUpdate: usersUpdate,
-  usersSendFriendRequest: usersSendFriendRequest
+  usersSendFriendRequest: usersSendFriendRequest,
+  usersDenyFriendRequest: usersDenyFriendRequest
 }
