@@ -12,7 +12,9 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
   self.user          = {};
   self.getUsers      = getUsers;
   self.register      = register;
+  self.showUser      = showUser;
   self.editProfile   = editProfile;
+  self.sendRequest   = sendRequest;
   self.login         = login;
   self.logout        = logout;
   self.checkLoggedIn = checkLoggedIn;
@@ -24,15 +26,27 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
   };
 
   function getUsers() {
-    User.query(function(data){
+    User.query(function(data) {
      return self.all = data.users;
    });
   }
 
+  function showUser(user) {
+    console.log(CurrentUser.CurrentLoggedIn);
+    var userId = user._id;
+    User.get({id: userId}, function(data) {
+      self.user = data.user;
+    })
+  }
+
   function editProfile() {
     // console.log(currentUser)
-    User.update({id: self.user._id}, self.user ,function(user) {
+    User.update({id: self.user._id}, self.user, function(user) {
     })
+  }
+
+  function sendRequest() {
+    console.log("Trying to send a request")
   }
 
   function handleLogin(res) {

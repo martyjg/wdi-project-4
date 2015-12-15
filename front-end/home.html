@@ -22,12 +22,10 @@
     <h2>COOL NEW PEOPLE</h2>
     <div class="pure-g cool-new-people">
     <div class="pure-u-1-3 cool-new-person" ng-repeat="user in users.all" ng-if="$index < 3">
-    <a href="#" ui-sref="profile({{ user.local._id }})">{{ user.local.username }}</a>
+      <a href="#" ui-sref="profile" ng-click="users.showUser(user)">{{ user.local.username }}</a>
     </div>
     </div>
   </div>
 
 </section>
-
-<a ui-sref="home({foo: 'fooVal1', bar: 'barVal1'})">
 

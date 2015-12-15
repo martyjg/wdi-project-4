@@ -8,7 +8,8 @@ var userSchema = mongoose.Schema({
     password: { type: String, required: true },
     fullname: { type: String},
     picture: { type: String }
-  }
+  },
+  requests: [{ type: mongoose.Schema.ObjectId, ref: 'User' }]
 });
 
 userSchema.statics.encrypt = function(password) {
