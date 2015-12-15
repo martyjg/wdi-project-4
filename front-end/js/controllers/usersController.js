@@ -1,6 +1,6 @@
 angular
-  .module('MySpace')
-  .controller('UsersController', UsersController);
+.module('MySpace')
+.controller('UsersController', UsersController);
 
 UsersController.$inject = ['User', 'TokenService', 'CurrentUser', '$state', 'Upload'];
 function UsersController(User, TokenService, CurrentUser, $state, Upload){
@@ -38,6 +38,7 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
     User.get({id: userId}, function(data) {
       self.user = data.user;
     })
+    getRequests();
   }
 
   function editProfile() {
@@ -56,6 +57,19 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
     })
   }
 
+  function getRequests() {
+    self.currentUser.pendingRequests = [];
+    var receiverId = self.currentUser._id;
+    for (i = 0; i < self.all.length; i++) {
+      for (j = 0; j < self.all[i].requests.length; j++) {
+        if (self.all[i].requests[j] == receiverId) {
+          self.currentUser.pendingRequests.push(self.all[i])
+        }
+      }
+    }
+    console.log(self.currentUser.pendingRequests)
+  }
+
   function denyRequest(user) {
     self.user = CurrentUser.CurrentLoggedIn;
     var userId = user._id;
@@ -65,63 +79,63 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
     // User.denyFriendRequest({id: self.user._id}, CurrentUser.CurrentLoggedIn, function(user) {
     //   console.log(user);
     // })
-  }
+}
 
-  function handleLogin(res) {
-    var token = res.token ? res.token : null;
- 
-    if (token) {
-      self.getUsers();
-      TokenService.setToken(token);
-      $state.go('profile');
-    }
+function handleLogin(res) {
+  var token = res.token ? res.token : null;
 
-    var user = TokenService.decodeToken();
-    self.currentUser = CurrentUser.saveUser(user);
-  }
-
-  function register() {
-    User.register(self.user, handleLogin);
-  }
-
-  function login() {
-    User.login(self.user, handleLogin);
-  }
-
-  function logout() {
-    TokenService.removeToken();
-    self.all  = [];
-    self.user = {};
-    CurrentUser.clearUser();
-  }
-
-  function checkLoggedIn() {
-    var loggedIn = !!TokenService.getToken();
-    return loggedIn;
-  }
-
-  function upload() {
-    console.log("This is working")
-    Upload.upload({
-      url: 'http://localhost:3000/upload',
-      data: { file: self.file }
-    }).then(function(res) {
-      console.log("Success!");
-      console.log(res);
-    })
-    .catch(function(err) {
-      console.error(err);
-    });
-  }
-
-  if (CurrentUser.getUser()) {
-    self.currentUser = CurrentUser.getUser();
+  if (token) {
     self.getUsers();
-  } else {
-    console.log("NO CURRENT USER");
+    TokenService.setToken(token);
+    $state.go('profile');
   }
 
-  self.getUsers();
+  var user = TokenService.decodeToken();
+  self.currentUser = CurrentUser.saveUser(user);
+}
 
-  return self;
+function register() {
+  User.register(self.user, handleLogin);
+}
+
+function login() {
+  User.login(self.user, handleLogin);
+}
+
+function logout() {
+  TokenService.removeToken();
+  self.all  = [];
+  self.user = {};
+  CurrentUser.clearUser();
+}
+
+function checkLoggedIn() {
+  var loggedIn = !!TokenService.getToken();
+  return loggedIn;
+}
+
+function upload() {
+  console.log("This is working")
+  Upload.upload({
+    url: 'http://localhost:3000/upload',
+    data: { file: self.file }
+  }).then(function(res) {
+    console.log("Success!");
+    console.log(res);
+  })
+  .catch(function(err) {
+    console.error(err);
+  });
+}
+
+if (CurrentUser.getUser()) {
+  self.currentUser = CurrentUser.getUser();
+  self.getUsers();
+} else {
+  console.log("NO CURRENT USER");
+}
+
+self.getUsers();
+
+return self;
 }

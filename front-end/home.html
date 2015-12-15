@@ -9,7 +9,7 @@
       <ul class="pure-u-18-24">
         <li>Confirmation:</li>
       </ul>
-      <div class="pure-g pending-fr" ng-repeat="request in users.currentUser.requests">
+      <div class="pure-g pending-fr" ng-repeat="request in users.currentUser.pendingRequests">
           <div class="pure-u-6-24"><img class="pending-fr-img" ng-src="{{ request.local.picture }}"></div>
           <div class="pure-u-18-24">
           <span>{{ request.local.username }} wants to be your friend</span>
