@@ -9,7 +9,7 @@ var userSchema = mongoose.Schema({
     fullname: { type: String},
     picture: { type: String }
   },
-  requests: [{ type: mongoose.Schema.ObjectId, ref: 'User' }]
+  requests: [{ type: mongoose.Schema.ObjectId, ref: 'User', unique: true }]
 });
 
 userSchema.statics.encrypt = function(password) {

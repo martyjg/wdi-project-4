@@ -57,6 +57,12 @@ function usersUpdate(req, res){
 function usersSendFriendRequest(req, res){
   var currentUser = req.body;
   User.findById(req.params.id, function(err, user){
+    for (i = 0; i < user.requests.length; i++) {
+      if (user.requests[i] == currentUser._id) {
+        console.log("Already exists", currentUser)
+        return res.status(500).json({ message: "Something went wrong!" })
+      }
+    }
     user.requests.push(currentUser);
     user.save(function(err){
       if (err) return res.status(500).json({message: "Something went wrong!"});
@@ -66,6 +72,7 @@ function usersSendFriendRequest(req, res){
     })
   })
 }
+
 
 module.exports = {
   usersIndex:  usersIndex,
