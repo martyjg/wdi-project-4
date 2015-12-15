@@ -15,6 +15,7 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
   self.showUser      = showUser;
   self.editProfile   = editProfile;
   self.sendRequest   = sendRequest;
+  self.denyRequest   = denyRequest;
   self.login         = login;
   self.logout        = logout;
   self.checkLoggedIn = checkLoggedIn;
@@ -53,6 +54,11 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
     User.sendFriendRequest({id: self.user._id}, CurrentUser.CurrentLoggedIn, function(user) {
       console.log(user);
     })
+  }
+
+  function denyRequest(user) {
+    console.log("this shit is working now")
+    console.log(user);
   }
 
   function handleLogin(res) {
