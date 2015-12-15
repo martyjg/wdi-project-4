@@ -72,14 +72,20 @@ function usersSendFriendRequest(req, res) {
 }
 
 function usersDenyFriendRequest(req, res) {
-  var deniedUserId = req.body._id
+  var currentUserId = req.body._id;
   User.findById(req.params.id, function(err, user) {
     for (i = 0; i < user.requests.length; i++) {
-      if (user.requests[i] == deniedUserId) {
-        user.requests.pull(deniedUserId);
-        console.log(user.requests);
-      } 
+      if (user.requests[i] == currentUserId) {
+        user.requests.pull(currentUserId)
+      }
     }
+    console.log(user.requests)
+    // for (i = 0; i < user.requests.length; i++) {
+    //   if (user.requests[i] == deniedUserId) {
+    //     user.requests.pull(deniedUserId);
+    //     console.log(user.requests);
+    //   } 
+    // }
     user.save(function(err){
       if (err) return res.status(500).json({message: "Something went wrong!"});
 

@@ -71,71 +71,71 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
   }
 
   function denyRequest(user) {
-    self.user = CurrentUser.CurrentLoggedIn;
-    var userId = user._id;
-    var currentUserId = CurrentUser.CurrentLoggedIn._id;
-    console.log("These are the current users requests", self.user.requests)
-    self.user.requests.splice(userId);
-    // User.denyFriendRequest({id: self.user._id}, CurrentUser.CurrentLoggedIn, function(user) {
-    //   console.log(user);
-    // })
-}
-
-function handleLogin(res) {
-  var token = res.token ? res.token : null;
-
-  if (token) {
-    self.getUsers();
-    TokenService.setToken(token);
-    $state.go('profile');
+    // self.user = CurrentUser.CurrentLoggedIn;
+    // var userId = user._id;
+    // var currentUserId = CurrentUser.CurrentLoggedIn._id;
+    // console.log("These are the current users requests", self.user.requests)
+    // self.user.requests.splice(userId);
+    User.denyFriendRequest({id: user._id}, self.currentUser, function(user) {
+    })
+    getRequests();
   }
 
-  var user = TokenService.decodeToken();
-  self.currentUser = CurrentUser.saveUser(user);
-}
+  function handleLogin(res) {
+    var token = res.token ? res.token : null;
 
-function register() {
-  User.register(self.user, handleLogin);
-}
+    if (token) {
+      self.getUsers();
+      TokenService.setToken(token);
+      $state.go('profile');
+    }
 
-function login() {
-  User.login(self.user, handleLogin);
-}
+    var user = TokenService.decodeToken();
+    self.currentUser = CurrentUser.saveUser(user);
+  }
 
-function logout() {
-  TokenService.removeToken();
-  self.all  = [];
-  self.user = {};
-  CurrentUser.clearUser();
-}
+  function register() {
+    User.register(self.user, handleLogin);
+  }
 
-function checkLoggedIn() {
-  var loggedIn = !!TokenService.getToken();
-  return loggedIn;
-}
+  function login() {
+    User.login(self.user, handleLogin);
+  }
 
-function upload() {
-  console.log("This is working")
-  Upload.upload({
-    url: 'http://localhost:3000/upload',
-    data: { file: self.file }
-  }).then(function(res) {
-    console.log("Success!");
-    console.log(res);
-  })
-  .catch(function(err) {
-    console.error(err);
-  });
-}
+  function logout() {
+    TokenService.removeToken();
+    self.all  = [];
+    self.user = {};
+    CurrentUser.clearUser();
+  }
 
-if (CurrentUser.getUser()) {
-  self.currentUser = CurrentUser.getUser();
+  function checkLoggedIn() {
+    var loggedIn = !!TokenService.getToken();
+    return loggedIn;
+  }
+
+  function upload() {
+    console.log("This is working")
+    Upload.upload({
+      url: 'http://localhost:3000/upload',
+      data: { file: self.file }
+    }).then(function(res) {
+      console.log("Success!");
+      console.log(res);
+    })
+    .catch(function(err) {
+      console.error(err);
+    });
+  }
+
+  if (CurrentUser.getUser()) {
+    self.currentUser = CurrentUser.getUser();
+    self.getUsers();
+  } else {
+    console.log("NO CURRENT USER");
+  }
+
   self.getUsers();
-} else {
-  console.log("NO CURRENT USER");
-}
 
-self.getUsers();
-
-return self;
+  return self;
 }

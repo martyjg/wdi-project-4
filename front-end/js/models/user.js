@@ -12,7 +12,7 @@ function User($resource, API){
     'get':                { method: 'GET' },
     'save':               { method: 'POST' },
     'query':              { method: 'GET', isArray: false},
-    'denyFriendRequest':  { url: API + '/users/:id' + "/friendrequest", method: "DELETE" },
+    'denyFriendRequest':  { url: API + '/users/:id' + "/denyfriendrequest", method: "PUT" },
     'remove':             { method: 'DELETE' },
     'delete':             { method: 'DELETE' },
     'sendFriendRequest':  { url: API + '/users/:id' + "/friendrequest", method: "PUT" },
