@@ -1,24 +1,25 @@
 angular
   .module('MySpace')
-  .service('CurrentUser', CurrentUser);
+  .factory('CurrentUser', CurrentUser);
 
 CurrentUser.$inject = ["TokenService"]
 function CurrentUser(TokenService){
 
-  var self  = this;
-  self.user = {} 
+  var user = null;
 
-  self.saveUser = function(user){
-    self.CurrentLoggedIn = user;
-    self.user = user;
+  return {
+    saveUser: function(u){
+      return user = u;
+    },
+
+    getUser: function(){
+      // WEIRD, as services are meant to persist data
+      user = TokenService.decodeToken();
+      return user;
+    },
+
+    clearUser: function(){
+      return user = null;
+    }
   }
-
-  self.getUser = function(){
-    return self.user;
-  }
-
-  self.clearUser = function(){
-    return self.user = {};
-  }
-
 }

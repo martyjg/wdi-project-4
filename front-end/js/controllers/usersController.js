@@ -42,33 +42,42 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
 
   function editProfile() {
     // console.log(currentUser)
-    User.update({id: self.user._id}, self.user, function(user) {
+    User.update({id: self.currentUser._id}, self.currentUser, function(user) {
     })
   }
 
-  function sendRequest(user) {
-    self.user = user;
-    var userId = user._id;
-    var currentUserId = CurrentUser.CurrentLoggedIn._id;
-    self.user.requests.push(CurrentUser.CurrentLoggedIn._id);
-    User.sendFriendRequest({id: self.user._id}, CurrentUser.CurrentLoggedIn, function(user) {
+  function sendRequest(receiver) {
+    console.log(receiver);
+    var receiverId = receiver._id;
+    var senderId = self.currentUser._id;
+    User.sendFriendRequest({id: receiverId}, self.currentUser, function(user) {
       console.log(user);
+      self.currentUser.requests.push(receiverId);
     })
   }
 
   function denyRequest(user) {
-    console.log(user);
+    self.user = CurrentUser.CurrentLoggedIn;
+    var userId = user._id;
+    var currentUserId = CurrentUser.CurrentLoggedIn._id;
+    console.log("These are the current users requests", self.user.requests)
+    self.user.requests.splice(userId);
+    // User.denyFriendRequest({id: self.user._id}, CurrentUser.CurrentLoggedIn, function(user) {
+    //   console.log(user);
+    // })
   }
 
   function handleLogin(res) {
     var token = res.token ? res.token : null;
+ 
     if (token) {
       self.getUsers();
+      TokenService.setToken(token);
       $state.go('profile');
     }
-    self.user = TokenService.decodeToken();
-    CurrentUser.saveUser(self.user)
-    setCurrentUser();
+
+    var user = TokenService.decodeToken();
+    self.currentUser = CurrentUser.saveUser(user);
   }
 
   function register() {
@@ -105,19 +114,14 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
     });
   }
 
-  function setCurrentUser(){
-    self.currentUser = TokenService.decodeToken();
-    User.get({id: self.currentUser._id}, function(data) {
-      self.currentUser = data.user;
-    })
-  }
-
   if (CurrentUser.getUser()) {
-    self.user = TokenService.decodeToken();
+    self.currentUser = CurrentUser.getUser();
     self.getUsers();
+  } else {
+    console.log("NO CURRENT USER");
   }
 
   self.getUsers();
 
-return self
+  return self;
 }
