@@ -15,6 +15,7 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
   self.showUser      = showUser;
   self.editProfile   = editProfile;
   self.sendRequest   = sendRequest;
+  self.acceptRequest = acceptRequest;
   self.denyRequest   = denyRequest;
   self.login         = login;
   self.logout        = logout;
@@ -67,7 +68,12 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
         }
       }
     }
-    console.log(self.currentUser.pendingRequests)
+    self.currentUser.pendingRequests
+  }
+
+  function acceptRequest(user) {
+    console.log("This is the target user" + user._id);
+    console.log("This is the current user" + self.currentUser._id);
   }
 
   function denyRequest(user) {

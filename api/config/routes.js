@@ -17,6 +17,9 @@ router.route('/users/:id')
 router.route('/users/:id/friendrequest')
   .put(usersController.usersSendFriendRequest)
 
+router.route('/users/:id/acceptfriendrequest')
+  .put(usersController.usersAcceptFriendRequest)
+
 router.route('/users/:id/denyfriendrequest')
   .put(usersController.usersDenyFriendRequest)
 

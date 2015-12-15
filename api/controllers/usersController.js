@@ -71,6 +71,23 @@ function usersSendFriendRequest(req, res) {
 
 }
 
+function usersAcceptFriendRequest(req, res) {
+  var currentUserId = req.body._id;
+  var requesteeId = req.params.id
+  console.log(req.params.id);
+  User.findById(currentUserId, function(err, user) {
+    user.friends.push(requesteeId)
+    console.log("I think this is the current user" + user)
+    user.save(function(err){
+      if (err) return res.status(500).json({message: "Something went wrong!"});
+
+      res.status(201).json({message: 'Request Sent.', user: user});
+
+    })
+  })
+}
+
+
 function usersDenyFriendRequest(req, res) {
   var currentUserId = req.body._id;
   User.findById(req.params.id, function(err, user) {
@@ -101,5 +118,6 @@ module.exports = {
   usersShow: usersShow,
   usersUpdate: usersUpdate,
   usersSendFriendRequest: usersSendFriendRequest,
+  usersAcceptFriendRequest: usersAcceptFriendRequest,
   usersDenyFriendRequest: usersDenyFriendRequest
 }
