@@ -8,10 +8,13 @@ router.post('/login', authenticationsController.login);
 router.post('/register', authenticationsController.register);
 
 router.route('/users')
-  .get(usersController.usersIndex)
+  .get(usersController.usersIndex);
 
 router.route('/users/:id') 
   .get(usersController.usersShow)
-  .put(usersController.usersUpdate)
+  .put(usersController.usersUpdate);
+
+router.route('/users/:id/friendrequest')
+  .put(usersController.usersSendFriendRequest)
 
 module.exports = router;

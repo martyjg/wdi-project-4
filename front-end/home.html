@@ -9,6 +9,12 @@
 
   <div class="pure-u-md-10-24 pure-u-1 right-col">
     <h2>What else does a user see when logged in?</h2>
+    <h2>COOL NEW PEOPLE</h2>
+    <div class="pure-g cool-new-people">
+      <div class="pure-u-1-3 cool-new-person" ng-repeat="user in users.all" ng-if="$index < 3">
+        <a href="#" ui-sref="profile" ng-click="users.showUser(user)">{{ user.local.username }}</a>
+      </div>
+    </div>
   </div>
 </section>
 

@@ -50,7 +50,7 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
     var userId = user._id;
     var currentUserId = CurrentUser.CurrentLoggedIn._id;
     self.user.requests.push(CurrentUser.CurrentLoggedIn._id);
-    User.update({id: self.user._id}, self.user, function(user) {
+    User.sendFriendRequest({id: self.user._id}, CurrentUser.CurrentLoggedIn, function(user) {
       console.log(user);
     })
   }
