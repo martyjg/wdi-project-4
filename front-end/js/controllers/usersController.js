@@ -32,7 +32,7 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
   }
 
   function showUser(user) {
-    console.log(CurrentUser.CurrentLoggedIn);
+    console.log(user);
     var userId = user._id;
     User.get({id: userId}, function(data) {
       self.user = data.user;
@@ -63,6 +63,7 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
     }
     self.user = TokenService.decodeToken();
     CurrentUser.saveUser(self.user)
+    setCurrentUser();
   }
 
   function register() {
@@ -99,9 +100,16 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
     });
   }
 
+  function setCurrentUser(){
+    self.currentUser = TokenService.decodeToken();
+    User.get({id: self.currentUser._id}, function(data) {
+      self.currentUser = data.user;
+    })
+  }
+
   if (CurrentUser.getUser()) {
-    self.getUsers();
     self.user = TokenService.decodeToken();
+    self.getUsers();
   }
 
   self.getUsers();

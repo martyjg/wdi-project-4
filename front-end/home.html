@@ -1,9 +1,21 @@
 <section ng-show="users.checkLoggedIn()" id="home-logged-in" class="pure-g home">
 
   <div class="pure-u-md-14-24 pure-u-1 left-col">
-    <h2>PENDING FRIEND REQUESTS</h2>
-    <div class="pending-fr" ng-repeat="request in users.user.requests">
-    {{ request }}
+    <div class="pure-g">
+      <h2 class="pure-u-1">PENDING FRIEND REQUESTS</h2>
+      <ul class="pure-u-6-24">
+        <li>From:</li>
+      </ul>
+      <ul class="pure-u-18-24">
+        <li>Confirmation:</li>
+      </ul>
+      <div class="pure-g pending-fr" ng-repeat="request in users.currentUser.requests">
+          <div class="pure-u-6-24"><img class="pending-fr-img" ng-src="{{ request.local.picture }}"></div>
+          <div class="pure-u-18-24">
+          <span>{{ request.local.username }} wants to be your friend</span>
+          <span><button>Approve</button><button>Deny</button><button>Send Message</button></span>
+          </div>
+      </div>
     </div>
   </div>
 
