@@ -82,7 +82,16 @@ function usersAcceptFriendRequest(req, res) {
       if (err) return res.status(500).json({message: "Something went wrong!"});
 
       res.status(201).json({message: 'Request Sent.', user: user});
+    })
+  })
+  User.findById(requesteeId, function(err, user) {
+    user.requests.pull(currentUserId);
+    user.friends.push(currentUserId);
+    console.log("I think this is the requesteeUser" + user)
+    user.save(function(err){
+      if (err) return res.status(500).json({message: "Something went wrong!"});
 
+      res.status(201).json({message: 'Request Sent.', user: user});
     })
   })
 }

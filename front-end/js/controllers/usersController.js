@@ -72,16 +72,12 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
   }
 
   function acceptRequest(user) {
-    console.log("This is the target user" + user._id);
-    console.log("This is the current user" + self.currentUser._id);
+    User.acceptFriendRequest({id: user._id}, self.currentUser, function(user) {
+      getRequests();
+    })
   }
 
   function denyRequest(user) {
-    // self.user = CurrentUser.CurrentLoggedIn;
-    // var userId = user._id;
-    // var currentUserId = CurrentUser.CurrentLoggedIn._id;
-    // console.log("These are the current users requests", self.user.requests)
-    // self.user.requests.splice(userId);
     User.denyFriendRequest({id: user._id}, self.currentUser, function(user) {
     })
     getRequests();
