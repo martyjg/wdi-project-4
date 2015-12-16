@@ -20,6 +20,7 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
   self.hideRequest   = hideRequest;
   self.getRequests   = getRequests;
   self.saveComment   = saveComment;
+  // self.currentUser.post = {};
   self.login         = login;
   self.logout        = logout;
   self.checkLoggedIn = checkLoggedIn;
@@ -90,11 +91,11 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
   }
 
   function saveComment(user) {
-    currentTime = Date.now()
-    console.log("This is the recipient user", user.local.username);
-    console.log("This is the current user", self.currentUser.local.username)
-    console.log("Created_at", currentTime);
-    User.saveComment({})
+    currentTime = Date.now();
+    self.currentUser.comment.created_at = currentTime;
+    self.currentUser.comment.recipient = user._id;
+    User.saveComment({id: user._id}, self.currentUser, function(user) {
+    })
   }
 
   function hideRequest(id) {

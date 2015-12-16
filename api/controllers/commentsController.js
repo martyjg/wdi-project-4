@@ -12,7 +12,7 @@ function commentsCreate(req, res){
   var comment = new Comment(req.body.comment);
   comment.save(function(err) {
     if (err) return res.status(500).send(err);
-    var currentUserId = req.body.currentUserId;
+    var currentUserId = req.body._id;
     User.findById(currentUserId, function(err, user) {
       user.comments.push(comment);
       user.save();
