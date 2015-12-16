@@ -26,8 +26,6 @@ router.route('/users/:id/denyfriendrequest')
 
 router.route('/comments')
   .get(commentsController.commentsIndex)
-
-router.route('/comments/:id')
   .post(commentsController.commentsCreate)
 
 
