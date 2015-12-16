@@ -17,6 +17,8 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
   self.sendRequest   = sendRequest;
   self.acceptRequest = acceptRequest;
   self.denyRequest   = denyRequest;
+  self.hideRequest   = hideRequest;
+  self.getRequests   = getRequests;
   self.login         = login;
   self.logout        = logout;
   self.checkLoggedIn = checkLoggedIn;
@@ -34,12 +36,10 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
   }
 
   function showUser(user) {
-    console.log(user);
     var userId = user._id;
     User.get({id: userId}, function(data) {
       self.user = data.user;
     })
-    getRequests();
   }
 
   function editProfile() {
@@ -72,15 +72,27 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
   }
 
   function acceptRequest(user) {
+    var index = self.currentUser.pendingRequests.indexOf(user);
+    self.currentUser.pendingRequests.splice(index, 1);
     User.acceptFriendRequest({id: user._id}, self.currentUser, function(user) {
-      getRequests();
+      console.log("accepting.." + user)
+      // getRequests();
+      // showUser(self.currentUser);
+
     })
   }
 
   function denyRequest(user) {
+    var index = self.currentUser.pendingRequests.indexOf(user);
+    self.currentUser.pendingRequests.splice(index, 1);
     User.denyFriendRequest({id: user._id}, self.currentUser, function(user) {
+      console.log("denying.." + user._id);
     })
-    getRequests();
+    // showUser(self.currentUser);
+  }
+
+  function hideRequest(id) {
+    $("#" + id).hide();
   }
 
   function handleLogin(res) {
@@ -89,11 +101,12 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
     if (token) {
       self.getUsers();
       TokenService.setToken(token);
-      $state.go('profile');
     }
 
     var user = TokenService.decodeToken();
     self.currentUser = CurrentUser.saveUser(user);
+    showUser(self.currentUser);
+    $state.go('profile');
   }
 
   function register() {

@@ -8,10 +8,10 @@ function usersIndex(req, res) {
 }
 
 function usersShow(req, res){
-User.findById(req.params.id).populate("requests").exec(function(err, user) {
-  if (err) return res.status(404).json({message: 'Something went wrong.'});
-  res.status(200).json({ user: user });
-})
+  User.findById(req.params.id).populate("requests").exec(function(err, user) {
+    if (err) return res.status(404).json({message: 'Something went wrong.'});
+    res.status(200).json({ user: user });
+  })
 }
 
 function usersUpdate(req, res){
@@ -35,22 +35,7 @@ function usersUpdate(req, res){
 }
 
 function usersSendFriendRequest(req, res) {
-  // var currentUser = req.body;
-  // User.findById(req.params.id, function(err, user){
-  //   for (i = 0; i < user.requests.length; i++) {
-  //     if (user.requests[i] == currentUser._id) {
-  //       console.log("Already exists", currentUser)
-  //       return res.status(500).json({ message: "Something went wrong!" })
-  //     }
-  //   }
-  //   user.requests.push(currentUser);
-  //   user.save(function(err){
-  //     if (err) return res.status(500).json({message: "Something went wrong!"});
 
-  //     res.status(201).json({message: 'Request Sent.', user: user});
-
-  //   })
-  // })
   var sender     = req.body;
   var receiverId = req.params.id;
 
@@ -74,24 +59,19 @@ function usersSendFriendRequest(req, res) {
 function usersAcceptFriendRequest(req, res) {
   var currentUserId = req.body._id;
   var requesteeId = req.params.id
-  console.log(req.params.id);
   User.findById(currentUserId, function(err, user) {
     user.friends.push(requesteeId)
-    console.log("I think this is the current user" + user)
     user.save(function(err){
       if (err) return res.status(500).json({message: "Something went wrong!"});
-
-      res.status(201).json({message: 'Request Sent.', user: user});
     })
   })
   User.findById(requesteeId, function(err, user) {
     user.requests.pull(currentUserId);
     user.friends.push(currentUserId);
-    console.log("I think this is the requesteeUser" + user)
     user.save(function(err){
       if (err) return res.status(500).json({message: "Something went wrong!"});
 
-      res.status(201).json({message: 'Request Sent.', user: user});
+      res.status(201).json({message: 'Requested Accepted.', user: user});
     })
   })
 }
@@ -105,18 +85,10 @@ function usersDenyFriendRequest(req, res) {
         user.requests.pull(currentUserId)
       }
     }
-    console.log(user.requests)
-    // for (i = 0; i < user.requests.length; i++) {
-    //   if (user.requests[i] == deniedUserId) {
-    //     user.requests.pull(deniedUserId);
-    //     console.log(user.requests);
-    //   } 
-    // }
     user.save(function(err){
       if (err) return res.status(500).json({message: "Something went wrong!"});
 
       res.status(201).json({message: 'Request Sent.', user: user});
-
     })
   })
 }

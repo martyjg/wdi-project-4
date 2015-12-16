@@ -10,11 +10,12 @@
         <li>Confirmation:</li>
       </ul>
       <div class="pure-g pending-fr" ng-repeat="request in users.currentUser.pendingRequests">
-          <div class="pure-u-6-24"><img class="pending-fr-img" ng-src="{{ request.local.picture }}"></div>
-          <div class="pure-u-18-24">
+        <div class="pure-u-6-24"><img class="pending-fr-img" ng-src="{{ request.local.picture }}">
+        </div>
+        <div class="pure-u-18-24" id="{{ request._id }}">
           <span>{{ request.local.username }} wants to be your friend</span>
           <span><button ng-click="users.acceptRequest(request)">Approve</button><button ng-click="users.denyRequest(request)">Deny</button><button>Send Message</button></span>
-          </div>
+        </div>
       </div>
     </div>
   </div>
