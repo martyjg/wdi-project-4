@@ -110,16 +110,23 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
   function listUsersComments(user) {
     user.receivedComments = [];
     userId = user._id
-    for (var i = 0; i < self.allComments.length; i++) {
-      if (self.allComments[i].recipient == userId) {
-        // time = self.allComments[i].created_at.getTime();
-        // date = new Date(time);
-        // self.allComments[i].created_at = date.toString();
 
-        user.receivedComments.push(self.allComments[i]);
+    for (var i = 0; i < self.all.length; i++) {
+      for (j = 0; j < self.all[i].comments.length; j++) {
+        console.log(self.all[i].comments[j]);
       }
     }
-    return user.receivedComments;
+
+    // for (var i = 0; i < self.allComments.length; i++) {
+    //   if (self.allComments[i].recipient == userId) {
+    //     // time = self.allComments[i].created_at.getTime();
+    //     // date = new Date(time);
+    //     // self.allComments[i].created_at = date.toString();
+
+    //     user.receivedComments.push(self.allComments[i]);
+    //   }
+    // }
+    // return user.receivedComments;
   }
 
   function hideRequest(id) {

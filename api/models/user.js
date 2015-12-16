@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
 var bcrypt   = require('bcrypt-nodejs');
+var Comment  = require('./comment');
 
 var userSchema = mongoose.Schema({
   local: {
@@ -11,7 +12,8 @@ var userSchema = mongoose.Schema({
   },
   requests: [{ type: mongoose.Schema.ObjectId, ref: "User" }],
   friends: [{ type: mongoose.Schema.ObjectId, ref: "User" }],
-  comments: [{ type: mongoose.Schema.ObjectId, ref: "Comment" }]
+  // comments: [{ type: mongoose.Schema.ObjectId, ref: "Comment" }]
+  comments: [Comment.schema]
 });
 
 userSchema.statics.encrypt = function(password) {
