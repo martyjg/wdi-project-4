@@ -43,11 +43,15 @@
 
     <div class="pure-g profile-comments">
     <h2 class="pure-u-1">{{ users.user.local.username }}'s Friends Comments</h2>
-    <!-- <span class="pure-u-1 comments-count"></span> -->
+    <span class="pure-u-1 comments-count">Displaying {{ users.user.receivedComments.length }} of {{ users.user.receivedComments.length }} comments</span>
     <form class="pure-u-1" name="users.submitComment" ng-submit="users.saveComment(users.user)" novalidate>
       <textarea name="post" rows=4 ng-model="users.currentUser.comment.post"></textarea>
       <button>Submit Comment</button>
     </form>
+
+    <div class="pure-u-1 received-comment" ng-repeat="comment in users.user.receivedComments">
+      {{ comment }}
+    </div>
   </div> 
 
 </section>

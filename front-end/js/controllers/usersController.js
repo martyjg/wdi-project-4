@@ -112,6 +112,10 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
     userId = user._id
     for (var i = 0; i < self.allComments.length; i++) {
       if (self.allComments[i].recipient == userId) {
+        // time = self.allComments[i].created_at.getTime();
+        // date = new Date(time);
+        // self.allComments[i].created_at = date.toString();
+
         user.receivedComments.push(self.allComments[i]);
       }
     }
