@@ -2,6 +2,7 @@ var express = require('express'),
 router  = express.Router();
 
 var usersController = require('../controllers/usersController');
+var commentsController = require('../controllers/commentsController');
 var authenticationsController = require('../controllers/authenticationsController');
 
 router.post('/login', authenticationsController.login);
@@ -23,6 +24,11 @@ router.route('/users/:id/acceptfriendrequest')
 router.route('/users/:id/denyfriendrequest')
   .put(usersController.usersDenyFriendRequest)
 
+router.route('/comments')
+  .get(commentsController.commentsIndex)
+
+router.route('/comments/:id')
+  .post(commentsController.commentsCreate)
 
 
 module.exports = router;
