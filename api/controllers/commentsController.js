@@ -10,8 +10,20 @@ function commentsIndex(req, res){
 
 function commentsCreate(req, res){
 
-  console.log(req.body);
+  console.log("This is the comment, recipient Alex:", req.body.comment);
+  console.log("This is the current user who is writing the comment:", req.body.currentUserId);
   console.log("this is res: " + res);
+
+  var comment = new Comment(req.body.comment);
+  comment.save(function(err) {
+    if (err) return res.status(500).send(err);
+    var currentUserId = req.body.currentUserId;
+    User.findById(currentUserId, function(err, user) {
+      user.comments.push(comment);
+      user.save();
+      return res.status(201).send(comment);
+    });
+  });
   // var recipientId = req.params.id;
   // console.log("this is the recipient id, " + recipientId)
   //params should be the target user
