@@ -1,3 +1,15 @@
+* {
+  font-family: Verdana, Geneva, sans-serif !important;
+}
+
+body {
+  background-color: #EAEAEA;
+}
+
+section {
+  background-color: white;
+}
+
 header {
   background-color: #039;
   height: 90px;
@@ -25,7 +37,7 @@ li {
 }
 
 #profile {
-  background-color: grey;
+  background-color: white;
   width: 800px;
   margin: 0 auto;
 }
@@ -39,14 +51,29 @@ li {
   width: 100%;
 }
 
+h2 {
+  padding: 3px 10px;
+  color: #fa9128;
+  background-color: #ffd4a7;
+}
+
 .left-col {
-  background-color: red;
+  /*background-color: red;*/
   margin: 10px 0;
 }
 
 .right-col {
-  background-color: cyan;
+  /*background-color: cyan;*/
   margin: 10px 0;
+}
+.left-col > * {
+  /*background-color: red;*/
+  padding: 0 8px;
+}
+
+.right-col > * {
+  /*background-color: cyan;*/
+  padding: 0 8px;
 }
 
 .pending-fr {
@@ -55,6 +82,10 @@ li {
 
 .pending-fr-img {
   width: 100%;
+}
+
+.profile-friend ul {
+  padding: 5px;
 }
 
 .received-comment {
