@@ -33,8 +33,8 @@
       <h2 class="pure-u-1">{{ users.user.local.username }}'s Friends</h2>
       <div class="pure-u-6-24 profile-friend" ng-repeat="friend in users.user.friends">
         <ul>
-        <li>{{ friend.local.username }}</li>
-        <li><img ng-src="{{ friend.local.picture }}"></li>
+        <li><a href="#" ng-click="users.showUser(friend)" ui-sref="profile">{{ friend.local.username }}</a></li>
+        <li class="user-image"><img ng-src="{{ friend.local.picture }}" ng-click="users.showUser(friend)" ui-sref="profile"></li>
         </ul>
       </div>
 
