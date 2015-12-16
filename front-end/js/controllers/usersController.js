@@ -106,6 +106,7 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
     User.saveComment({id: user._id}, self.currentUser, function(user) {
       self.currentUser.comment.post = "";
     })
+    
   }
 
   function listUsersComments(user) {
@@ -126,7 +127,7 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
         }
       }
     }
-    
+
     return user.receivedComments;
   }
 
