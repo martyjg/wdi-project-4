@@ -116,31 +116,18 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
     for (var i = 0; i < self.all.length; i++) {
       for (j = 0; j < self.all[i].comments.length; j++) {
         if (self.all[i].comments[j].recipient == user._id) {
-          // console.log(self.all[i].comments[j].post)
           user.receivedComment = {
             commenterName: self.all[i].local.username,
             commenterPicture: self.all[i].local.picture,
             commentDate: self.all[i].comments[j].created_at,
             commentPost: self.all[i].comments[j].post
           }
-
           user.receivedComments.push(user.receivedComment);
         }
       }
     }
-
+    
     return user.receivedComments;
-
-    // for (var i = 0; i < self.allComments.length; i++) {
-    //   if (self.allComments[i].recipient == userId) {
-    //     // time = self.allComments[i].created_at.getTime();
-    //     // date = new Date(time);
-    //     // self.allComments[i].created_at = date.toString();
-
-    //     user.receivedComments.push(self.allComments[i]);
-    //   }
-    // }
-    // return user.receivedComments;
   }
 
   function hideRequest(id) {

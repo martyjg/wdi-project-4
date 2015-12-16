@@ -32,7 +32,7 @@ header {
 }
 
 .user-image img {
-  height: 100px;
+  width: 100%;
 }
 
 .left-col {
@@ -50,5 +50,9 @@ header {
 }
 
 .pending-fr-img {
+  width: 100%;
+}
+
+.received-comment {
   width: 100%;
 }

@@ -10,7 +10,7 @@
       </div>
 
       <div class="pure-u-10-24 user-image">
-      <img ng-src="{{ users.user.local.picture }}">
+        <img ng-src="{{ users.user.local.picture }}">
       </div>
 
       <div class="pure-u-14-24 user-last-login-views">
@@ -19,8 +19,8 @@
     </div>
 
     <div class="pure-u-1 user-mood-pics">
-    <span>USERS MOOD</span>
-    <span><a href="#" ui-sref="album">SEE MY PICS?</a></span>
+      <span>USERS MOOD</span>
+      <span><a href="#" ui-sref="album">SEE MY PICS?</a></span>
     </div>
 
     <h2><a href="#" ng-click="users.sendRequest(users.user)">Add me as a friend</a></h2>
@@ -34,24 +34,31 @@
       <span class="pure-u-1 friends-count">{{ users.user.local.username }} has {{ users.user.friends.length }} friends</span>
       <div class="pure-u-6-24 profile-friend" ng-repeat="friend in users.user.friends">
         <ul>
-        <li><a href="#" ng-click="users.showUser(friend)" ui-sref="profile">{{ friend.local.username }}</a></li>
-        <li class="user-image"><img ng-src="{{ friend.local.picture }}" ng-click="users.showUser(friend)" ui-sref="profile"></li>
+          <li><a href="#" ng-click="users.showUser(friend)" ui-sref="profile">{{ friend.local.username }}</a></li>
+          <li class="user-image"><img ng-src="{{ friend.local.picture }}" ng-click="users.showUser(friend)" ui-sref="profile"></li>
         </ul>
       </div>
 
     </div>
 
     <div class="pure-g profile-comments">
-    <h2 class="pure-u-1">{{ users.user.local.username }}'s Friends Comments</h2>
-    <span class="pure-u-1 comments-count">Displaying {{ users.user.receivedComments.length }} of {{ users.user.receivedComments.length }} comments</span>
-    <form class="pure-u-1" name="users.submitComment" ng-submit="users.saveComment(users.user)" novalidate>
-      <textarea name="post" rows=4 ng-model="users.currentUser.comment.post"></textarea>
-      <button>Submit Comment</button>
-    </form>
+      <h2 class="pure-u-1">{{ users.user.local.username }}'s Friends Comments</h2>
+      <span class="pure-u-1 comments-count">Displaying {{ users.user.receivedComments.length }} of {{ users.user.receivedComments.length }} comments</span>
+      <form class="pure-u-1" name="users.submitComment" ng-submit="users.saveComment(users.user)" novalidate>
+        <textarea name="post" rows=4 ng-model="users.currentUser.comment.post"></textarea>
+        <button>Submit Comment</button>
+      </form>
 
-    <div class="pure-u-1 received-comment" ng-repeat="comment in users.user.receivedComments">
-      {{ comment }}
-    </div>
-  </div> 
+      <div class="pure-g received-comment" ng-repeat="comment in users.user.receivedComments">
+        <div class="pure-u-4-24 username-picture-comment-column">
+          <li>{{ comment.commenterName }}</li>
+          <li class="user-image"><img ng-src="{{ comment.commenterPicture }}"></li>
+        </div>
+        <div class="pure-u-20-24">
+        <li>{{ comment.commentDate }}</li>
+        <li>{{ comment.commentPost }}</li>
+        </div>
+      </div>
+    </div> 
 
-</section>
+  </section>
