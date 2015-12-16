@@ -1,30 +1,32 @@
 angular
-.module('MySpace')
-.controller('UsersController', UsersController);
+  .module('MySpace')
+  .controller('UsersController', UsersController);
 
 UsersController.$inject = ['User', 'TokenService', 'CurrentUser', '$state', 'Upload'];
 function UsersController(User, TokenService, CurrentUser, $state, Upload){
 
   var self = this;
 
-  self.file          = null;
-  self.all           = [];
-  self.user          = {};
-  self.getUsers      = getUsers;
-  self.register      = register;
-  self.showUser      = showUser;
-  self.editProfile   = editProfile;
-  self.sendRequest   = sendRequest;
-  self.acceptRequest = acceptRequest;
-  self.denyRequest   = denyRequest;
-  self.hideRequest   = hideRequest;
-  self.getRequests   = getRequests;
-  self.saveComment   = saveComment;
-  // self.currentUser.post = {};
-  self.login         = login;
-  self.logout        = logout;
-  self.checkLoggedIn = checkLoggedIn;
-  self.upload        = upload;
+  self.file                  = null;
+  self.all                   = [];
+  self.allComments           = [];
+  self.user                  = {};
+  self.user.receivedComments = [];
+  self.getUsers              = getUsers;
+  self.getComments           = getComments;
+  self.register              = register;
+  self.showUser              = showUser;
+  self.editProfile           = editProfile;
+  self.sendRequest           = sendRequest;
+  self.acceptRequest         = acceptRequest;
+  self.denyRequest           = denyRequest;
+  self.hideRequest           = hideRequest;
+  self.getRequests           = getRequests;
+  self.saveComment           = saveComment;
+  self.login                 = login;
+  self.logout                = logout;
+  self.checkLoggedIn         = checkLoggedIn;
+  self.upload                = upload;
 
   self.authenticate = function(provider) {
     console.log(provider)
@@ -37,10 +39,17 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
    });
   }
 
+  function getComments() {
+    User.commentsQuery(function(data) {
+      return self.allComments = data.comments;
+    })
+  }
+
   function showUser(user) {
     var userId = user._id;
     User.get({id: userId}, function(data) {
       self.user = data.user;
+      self.user.receivedComments = listUsersComments(self.user);
     })
   }
 
@@ -98,6 +107,17 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
     })
   }
 
+  function listUsersComments(user) {
+    user.receivedComments = [];
+    userId = user._id
+    for (var i = 0; i < self.allComments.length; i++) {
+      if (self.allComments[i].recipient == userId) {
+        user.receivedComments.push(self.allComments[i]);
+      }
+    }
+    return user.receivedComments;
+  }
+
   function hideRequest(id) {
     $("#" + id).hide();
   }
@@ -107,6 +127,7 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
 
     if (token) {
       self.getUsers();
+      self.getComments();
       TokenService.setToken(token);
     }
 

@@ -11,6 +11,7 @@ function User($resource, API){
     { 
     'get':                 { method: 'GET' },
     'save':                { method: 'POST' },
+    'commentsQuery':       { url: API + '/comments', method: 'GET' },
     'query':               { method: 'GET', isArray: false},
     'saveComment':         { url: API + '/comments', method: "POST" },
     'acceptFriendRequest': { url: API + '/users/:id' + "/acceptfriendrequest", method: "PUT" },

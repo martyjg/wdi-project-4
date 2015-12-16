@@ -2,9 +2,9 @@ var Comment = require("../models/comment");
 var User = require("../models/user");
 
 function commentsIndex(req, res){
-  Comment.find({}, function(err, comments) {
-    if (err) return res.status(404).send(err);
-    res.status(200).send(comments);
+  Comment.find(function(err, comments){
+    if (err) return res.status(404).json({message: 'Something went wrong.'});
+    res.status(200).json({ comments: comments });
   });
 }
 
