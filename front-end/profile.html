@@ -30,7 +30,8 @@
   <div class="pure-u-md-14-24 pure-u-1 right-col">
     wordup
     <div class="pure-g profile-friends">
-      <h2 class="pure-u-1">{{ users.user.local.username }}'s Friends</h2>
+      <h2 class="pure-u-1">{{ users.user.local.username }}'s Friend Space</h2>
+      <span class="pure-u-1 friends-count">{{ users.user.local.username }} has {{ users.user.friends.length }} friends</span>
       <div class="pure-u-6-24 profile-friend" ng-repeat="friend in users.user.friends">
         <ul>
         <li><a href="#" ng-click="users.showUser(friend)" ui-sref="profile">{{ friend.local.username }}</a></li>
@@ -39,6 +40,14 @@
       </div>
 
     </div>
+
+    <div class="pure-g profile-comments">
+    <h2 class="pure-u-1">{{ users.user.local.username }}'s Friends Comments</h2>
+    <!-- <span class="pure-u-1 comments-count"></span> -->
+    <form class="pure-u-1" name="users.submitComment" ng-submit="users.saveComment(users.user)" novalidate>
+      <textarea name="post" rows=4 ng-model="users.currentUser.comment.post"></textarea>
+      <button>Submit Comment</button>
+    </form>
   </div> 
 
 </section>

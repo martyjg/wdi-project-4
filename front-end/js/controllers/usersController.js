@@ -19,6 +19,7 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
   self.denyRequest   = denyRequest;
   self.hideRequest   = hideRequest;
   self.getRequests   = getRequests;
+  self.saveComment   = saveComment;
   self.login         = login;
   self.logout        = logout;
   self.checkLoggedIn = checkLoggedIn;
@@ -75,10 +76,8 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
     var index = self.currentUser.pendingRequests.indexOf(user);
     self.currentUser.pendingRequests.splice(index, 1);
     User.acceptFriendRequest({id: user._id}, self.currentUser, function(user) {
-      console.log("accepting.." + user)
       // getRequests();
       // showUser(self.currentUser);
-
     })
   }
 
@@ -86,9 +85,16 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
     var index = self.currentUser.pendingRequests.indexOf(user);
     self.currentUser.pendingRequests.splice(index, 1);
     User.denyFriendRequest({id: user._id}, self.currentUser, function(user) {
-      console.log("denying.." + user._id);
     })
     // showUser(self.currentUser);
+  }
+
+  function saveComment(user) {
+    currentTime = Date.now()
+    console.log("This is the recipient user", user.local.username);
+    console.log("This is the current user", self.currentUser.local.username)
+    console.log("Created_at", currentTime);
+    User.saveComment({})
   }
 
   function hideRequest(id) {

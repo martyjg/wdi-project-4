@@ -9,11 +9,6 @@ function commentsIndex(req, res){
 }
 
 function commentsCreate(req, res){
-
-  console.log("This is the comment, recipient Alex:", req.body.comment);
-  console.log("This is the current user who is writing the comment:", req.body.currentUserId);
-  console.log("this is res: " + res);
-
   var comment = new Comment(req.body.comment);
   comment.save(function(err) {
     if (err) return res.status(500).send(err);
@@ -24,21 +19,6 @@ function commentsCreate(req, res){
       return res.status(201).send(comment);
     });
   });
-  // var recipientId = req.params.id;
-  // console.log("this is the recipient id, " + recipientId)
-  //params should be the target user
-  //body should be the current user lol
-
-  // var comment = new Comment(req.body.comment);
-  // comment.save(function(err){
-  //   if (err) return res.status(500).send(err);
-  //   var id = req.body.comment.user_id;
-  //   User.findById(id, function(err, user){
-  //      user.comments.push(comment);
-  //      user.save();
-  //      return res.status(201).send(comment)
-  //   });
-  // });
 }
 
 module.exports = {
