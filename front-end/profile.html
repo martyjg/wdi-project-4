@@ -29,6 +29,13 @@
 
   <div class="pure-u-md-14-24 pure-u-1 right-col">
     wordup
+    <div class="pure-g profile-friends">
+      <h2 class="pure-u-1">{{ users.user.local.username }}'s Friends</h2>
+      <div class="pure-u-6-24 profile-friend" ng-repeat="friend in users.user.friends">
+        {{ friend }}
+      </div>
+
+    </div>
   </div> 
 
 </section>
