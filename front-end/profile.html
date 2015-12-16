@@ -32,7 +32,10 @@
     <div class="pure-g profile-friends">
       <h2 class="pure-u-1">{{ users.user.local.username }}'s Friends</h2>
       <div class="pure-u-6-24 profile-friend" ng-repeat="friend in users.user.friends">
-        {{ friend }}
+        <ul>
+        <li>{{ friend.local.username }}</li>
+        <li><img ng-src="{{ friend.local.picture }}"></li>
+        </ul>
       </div>
 
     </div>
