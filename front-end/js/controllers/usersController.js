@@ -1,6 +1,6 @@
 angular
-  .module('MySpace')
-  .controller('UsersController', UsersController);
+.module('MySpace')
+.controller('UsersController', UsersController);
 
 UsersController.$inject = ['User', 'TokenService', 'CurrentUser', '$state', 'Upload'];
 function UsersController(User, TokenService, CurrentUser, $state, Upload){
@@ -103,10 +103,20 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
     currentTime = Date.now();
     self.currentUser.comment.created_at = currentTime;
     self.currentUser.comment.recipient = user._id;
+    user.receivedComment = {
+      commenterName: self.currentUser.local.username,
+      commenterPicture: self.currentUser.local.picture,
+      commentDate: self.currentUser.comment.created_at,
+      commentPost: self.currentUser.comment.post
+    };
+    // var arrayEnd = self.user.receivedComments.length
+    // self.user.receivedComments.splice(arrayEnd, 0, user.receivedComment);
+    self.user.receivedComments.push(user.receivedComment);
     User.saveComment({id: user._id}, self.currentUser, function(user) {
+      // console.log(user.receivedComment);
       self.currentUser.comment.post = "";
     })
-    
+
   }
 
   function listUsersComments(user) {

@@ -20,6 +20,10 @@ header {
   padding: 0 5px;
 }
 
+li {
+  list-style: none;
+}
+
 #profile {
   background-color: grey;
   width: 800px;

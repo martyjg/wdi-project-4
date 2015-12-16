@@ -45,15 +45,16 @@
       <h2 class="pure-u-1">{{ users.user.local.username }}'s Friends Comments</h2>
       <span class="pure-u-1 comments-count">Displaying {{ users.user.receivedComments.length }} of {{ users.user.receivedComments.length }} comments</span>
       <form class="pure-u-1" name="users.submitComment" ng-submit="users.saveComment(users.user)" novalidate>
-        <textarea name="post" rows=4 ng-model="users.currentUser.comment.post"></textarea>
+        <textarea name="post" rows=4 ng-model="users.currentUser.comment.post" placeholder="Enter Comment"></textarea>
         <button>Submit Comment</button>
       </form>
 
-      <div class="pure-g received-comment" ng-repeat="comment in users.user.receivedComments">
+      <div class="pure-g received-comment" ng-repeat="comment in users.user.receivedComments | orderBy: '-commentDate': reverse">
         <div class="pure-u-4-24 username-picture-comment-column">
           <li>{{ comment.commenterName }}</li>
           <li class="user-image"><img ng-src="{{ comment.commenterPicture }}"></li>
         </div>
+
         <div class="pure-u-20-24">
         <li>{{ comment.commentDate | date:'medium' }}</li>
         <li>{{ comment.commentPost }}</li>
