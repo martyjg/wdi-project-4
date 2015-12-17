@@ -8,7 +8,12 @@ var userSchema = mongoose.Schema({
     email: { type: String, unique: true, required: true },
     password: { type: String, required: true },
     fullname: { type: String},
-    picture: { type: String }
+    picture: { type: String },
+    general: { type: String},
+    music: { type: String},
+    films: { type: String},
+    television: { type: String},
+    books: { type: String}
   },
   requests: [{ type: mongoose.Schema.ObjectId, ref: "User" }],
   friends: [{ type: mongoose.Schema.ObjectId, ref: "User" }],

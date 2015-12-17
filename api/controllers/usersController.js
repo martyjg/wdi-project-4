@@ -26,6 +26,11 @@ function usersUpdate(req, res){
     if (req.body.local.username) user.local.username = req.body.local.username;
     if (req.body.local.fullname) user.local.fullname = req.body.local.fullname;
     if (req.body.local.picture) user.local.picture = req.body.local.picture;
+    if (req.body.local.general) user.local.general = req.body.local.general;
+    if (req.body.local.music) user.local.music = req.body.local.music;
+    if (req.body.local.films) user.local.films = req.body.local.films;
+    if (req.body.local.television) user.local.television = req.body.local.television;
+    if (req.body.local.books) user.local.books = req.body.local.books;
     
     user.save(function(err) {
      if (err) return res.status(500).json({message: "Something went wrong!"});
