@@ -24,57 +24,60 @@
     </div>
 
     <div ng-show="users.checkCurrentUser(users.user)" class="pure-u-1 update-user-profile">
-      <h2 ng-show="users.checkCurrentUser(users.user)"><a href="#" ng-click="users.editMode()">possible edit mode button here</a></h2>
-      <form class="pure-g" name="users.editForm" ng-submit="users.editProfile(); users.editMode()" ng-show="users.inEditMode" novalidate>
+      <h2 ng-hide="users.inEditMode"><a href="#" ng-click="users.editMode()">Enter edit mode</a></h2>
+      <div class="pure-u-1">
+      {{ users.user.local.username }}'s Interests
+        <form class="pure-g" name="users.editForm" ng-submit="users.editProfile(); users.editMode()" ng-show="users.inEditMode" novalidate>
 
-        <label for="general" class="pure-u-10-24">General</label>
-        <textarea type="text" class="pure-u-12-24" name="general" placeholder="general" ng-model="users.currentUser.local.general"></textarea>
+          <label for="general" class="pure-u-10-24">General</label>
+          <textarea type="text" class="pure-u-12-24" name="general" placeholder="general" ng-model="users.user.local.general"></textarea>
 
-        <label for="music" class="pure-u-10-24">Music</label>
-        <textarea type="text" class="pure-u-12-24" name="music" placeholder="music" ng-model="users.currentUser.local.music"></textarea>
+          <label for="music" class="pure-u-10-24">Music</label>
+          <textarea type="text" class="pure-u-12-24" name="music" placeholder="music" ng-model="users.user.local.music"></textarea>
 
-        <label for="films" class="pure-u-10-24">Films</label>
-        <textarea type="text" class="pure-u-12-24" name="films" placeholder="films" ng-model="users.currentUser.local.films"></textarea>
+          <label for="films" class="pure-u-10-24">Films</label>
+          <textarea type="text" class="pure-u-12-24" name="films" placeholder="films" ng-model="users.user.local.films"></textarea>
 
-        <label for="television" class="pure-u-10-24">Television</label>
-        <textarea type="text" class="pure-u-12-24" name="television" placeholder="television" ng-model="users.currentUser.local.television"></textarea>
+          <label for="television" class="pure-u-10-24">Television</label>
+          <textarea type="text" class="pure-u-12-24" name="television" placeholder="television" ng-model="users.user.local.television"></textarea>
 
-        <label for="books" class="pure-u-10-24">Books</label>
-        <textarea type="text" class="pure-u-12-24" name="books" placeholder="books" ng-model="users.currentUser.local.books"></textarea>
+          <label for="books" class="pure-u-10-24">Books</label>
+          <textarea type="text" class="pure-u-12-24" name="books" placeholder="books" ng-model="users.user.local.books"></textarea>
 
-        <button type="submit">Save Changes</button>
+          <button type="submit">Save Changes</button>
 
-      </form>
-      <div class="pure-g general-info" ng-hide="users.inEditMode">
-        <div class="pure-u-10-24">
-          General
-        </div>
-        <div class="pure-u-12-24">
-          {{ users.currentUser.local.general }}
-        </div>
-        <div class="pure-u-10-24">
-          Music
-        </div>
-        <div class="pure-u-12-24">
-          {{ users.currentUser.local.music }}
-        </div>
-        <div class="pure-u-10-24">
-          Films
-        </div>
-        <div class="pure-u-12-24">
-          {{ users.currentUser.local.films }}
-        </div>
-        <div class="pure-u-10-24">
-          Television
-        </div>
-        <div class="pure-u-12-24">
-          {{ users.currentUser.local.television }}
-        </div>
-        <div class="pure-u-10-24">
-          Books
-        </div>
-        <div class="pure-u-12-24">
-          {{ users.currentUser.local.books }}
+        </form>
+        <div class="pure-g general-info" ng-hide="users.inEditMode">
+          <div class="pure-u-10-24">
+            General
+          </div>
+          <div class="pure-u-12-24">
+            {{ users.user.local.general }}
+          </div>
+          <div class="pure-u-10-24">
+            Music
+          </div>
+          <div class="pure-u-12-24">
+            {{ users.user.local.music }}
+          </div>
+          <div class="pure-u-10-24">
+            Films
+          </div>
+          <div class="pure-u-12-24">
+            {{ users.user.local.films }}
+          </div>
+          <div class="pure-u-10-24">
+            Television
+          </div>
+          <div class="pure-u-12-24">
+            {{ users.user.local.television }}
+          </div>
+          <div class="pure-u-10-24">
+            Books
+          </div>
+          <div class="pure-u-12-24">
+            {{ users.user.local.books }}
+          </div>
         </div>
       </div>
     </div>
@@ -149,7 +152,7 @@
         </div>
       </div>
     </div>
-    
+
   </div> 
 
 </section>

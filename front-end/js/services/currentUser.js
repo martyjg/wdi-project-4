@@ -1,21 +1,20 @@
 angular
-  .module('MySpace')
-  .factory('CurrentUser', CurrentUser);
+.module('MySpace')
+.factory('CurrentUser', CurrentUser);
 
 CurrentUser.$inject = ["TokenService"]
+
 function CurrentUser(TokenService){
 
-  var user = null;
+  var user = null
 
   return {
-    saveUser: function(u){
-      return user = u;
+    getUser: function(){
+      return user ? user : TokenService.decodeToken();
     },
 
-    getUser: function(){
-      // WEIRD, as services are meant to persist data
-      user = TokenService.decodeToken();
-      return user;
+    saveUser: function(u){
+      return user = u;
     },
 
     clearUser: function(){
@@ -23,3 +22,19 @@ function CurrentUser(TokenService){
     }
   }
 }
+
+
+// getUser: function(){
+//   // WEIRD, as services are meant to persist data
+//   user = TokenService.decodeToken();
+//   return user;
+// },
+
+// function CurrentUser(TokenService){
+
+//   var user = null;
+
+//   return {
+
+//   }
+// }
