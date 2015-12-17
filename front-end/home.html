@@ -1,7 +1,7 @@
 <section ng-show="users.checkLoggedIn()" id="home-logged-in" class="pure-g home">
 
-  <div class="pure-u-md-14-24 pure-u-1 left-col">
-    <div class="pure-g">
+  <div class="pure-u-sm-14-24 pure-u-1 left-col">
+    <div class="pure-g" ng-hide="users.currentUser.pendingRequests">
       <h2 class="pure-u-1">PENDING FRIEND REQUESTS</h2>
       <ul class="pure-u-6-24">
         <li>From:</li>
@@ -20,43 +20,56 @@
     </div>
   </div>
 
-  <div class="pure-u-md-10-24 pure-u-1 right-col">
-    <h2>What else does a user see when logged in?</h2>
-    <h2>COOL NEW PEOPLE</h2>
-    <div class="pure-g cool-new-people">
-      <div class="pure-u-1-3 cool-new-person" ng-repeat="user in users.all" ng-if="$index < 3">
-        <a href="#" ui-sref="profile({id: user._id })">{{ user.local.username }}</a>
-        <li class="user-image"><img ng-src="{{ user.local.picture }}" ui-sref="profile({ id: user._id })"></li>
+  <div class="pure-u-sm-10-24 pure-u-1 right-col">
+    <div class="pure-g">
+      <h2 class="pure-u-1">Cool New People</h2>
+      <div class="pure-g cool-new-people">
+        <div class="pure-u-1-3 cool-new-person" ng-repeat="user in users.all" ng-if="$index < 3">
+          <ul>
+            <li><a href="#" ui-sref="profile({id: user._id })">{{ user.local.username }}</a></li>
+            <li class="user-image"><img ng-src="{{ user.local.picture }}" ui-sref="profile({ id: user._id })"></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
+
 </section>
 
 <section ng-hide="users.checkLoggedIn()" id="home-logged-out" class="pure-g home">
 
-  <div class="pure-u-md-14-24 pure-u-1 left-col">
-    <h2>COOL NEW VIDEOS</h2>
-  </div>
+  <section class="pure-u-14-24 left-col" id="login">
+  <div class="pure-g>"
+  <h2 class="pure-u-1">Login</h2>
+    <form class="pure-g login-form" name="users.loginForm" ng-submit="users.login()" novalidate>
 
-  <div class="pure-u-md-10-24 pure-u-1 right-col">
-    <section id="login">
-      <form name="users.loginForm" ng-submit="users.login()" novalidate>
+      <label for="email" class="pure-u-10-24">Email</label>
+      <div class="pure-u-14-24">
+      <input type="text" name="email" placeholder="Enter your email" ng-model="users.user.email" required>
+      </div>
 
-        <label for="email">Email</label>
-        <input type="text" name="email" placeholder="Enter your email" ng-model="users.user.email" required>
+      <label for="password" class="pure-u-10-24">Password</label>
+      <div class="pure-u-14-24">
+      <input type="password" class="pure-u-14-24" name="password" placeholder="Enter your password" ng-model="users.user.password" required>
+      </div>
 
-        <label for="password">Password</label>
-        <input type="password" name="password" placeholder="Enter your password" ng-model="users.user.password" required>
+      <button class="pure-u-1" type="submit">Login</button><a class="pure-u-1" href="#" ui-sref="register">Register</a>
 
-        <button type="submit">Login</button><a href="#" ui-sref="register">Register</a>
+    </form>
+    </div>
+  </section>
 
-      </form>
-    </section>
 
-    <h2>COOL NEW PEOPLE</h2>
-    <div class="pure-g cool-new-people">
-      <div class="pure-u-1-3 cool-new-person" ng-repeat="user in users.all" ng-if="$index < 3">
-        <a href="#" ui-sref="profile({id: user._id })">{{ user.local.username }}</a>
+  <div class="pure-u-sm-10-24 pure-u-1 right-col">
+    <div class="pure-g">
+      <h2 class="pure-u-1">Cool New People</h2>
+      <div class="pure-g cool-new-people">
+        <div class="pure-u-1-3 cool-new-person" ng-repeat="user in users.all" ng-if="$index < 3">
+          <ul>
+            <li><a href="#" ui-sref="profile({id: user._id })">{{ user.local.username }}</a></li>
+            <li class="user-image"><img ng-src="{{ user.local.picture }}" ui-sref="profile({ id: user._id })"></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

@@ -62,7 +62,9 @@ app.use('/api', expressJWT({ secret: secret })
     path: [
     { url: '/api/login', methods: ['POST'] },
     { url: '/api/users', methods: ['GET'] },
-    { url: '/api/register', methods: ['POST'] }
+    { url: '/api/register', methods: ['POST'] },
+    { url: '/api/users/:id/pending', methods: ['GET'] },
+    { url: '/api/users/pending', methods: ['GET'] }
     ]
   }));
 

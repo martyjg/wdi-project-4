@@ -8,14 +8,15 @@
         <h1 class="user-name">{{ users.user.local.username }}</h1>
       </div>
 
-      <div class="pure-u-10-24 user-image">
+      <div class="pure-u-10-24 user-profile-image">
         <img ng-src="{{ users.user.local.picture }}">
       </div>
 
-      <div class="pure-u-14-24 user-last-login-views">
+      <div class="pure-u-14-24 user-location-mood-tagline">
         <h3 ng-if="users.user.local.tagline">"{{ users.user.local.tagline }}"</h3>
         <h3>{{ users.user.local.location }}</h3>
-        <h3>{{ users.user.local.mood }}</h3>
+        <div><img ng-src="./css/images/online.gif"></div>
+        <h3 ng-if="users.user.local.mood">Mood: {{ users.user.local.mood }}</h3>
 
       </div>
     </div>

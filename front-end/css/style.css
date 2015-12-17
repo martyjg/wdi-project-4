@@ -8,6 +8,7 @@ light orange: #ffd4a7
 
 * {
   font-family: Verdana, Geneva, sans-serif !important;
+  font-size: 12px;
 }
 
 body {
@@ -24,6 +25,37 @@ header {
   width: 790px;
   margin: 0 auto;
   padding: 5px;
+}
+
+.login-form div input {
+  width: 100%;
+}
+
+.login-form > * {
+  margin-top: 10px;
+}
+
+.login-form {
+  text-align: center;
+}
+
+.login-form button {
+  margin: auto;
+  margin-top: 10px;
+  width: 100px;
+}
+
+.cool-new-person {
+  padding-top: 5px;
+  text-align: center;
+}
+
+.cool-new-person ul {
+  padding: 10px; 
+}
+
+.cool-new-person ul li {
+  margin-top: 5px;
 }
 
 .top-nav {
@@ -47,6 +79,7 @@ li {
 }
 
 h1 {
+  margin: 0;
   margin-bottom: 20px;
 }
 
@@ -67,6 +100,20 @@ h1 {
   color: white;
 }
 
+.user-location-mood-tagline h3 {
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.user-location-mood-tagline div {
+  text-align: right;
+}
+
+.user-location-mood-tagline div img {
+  width: 75px;
+  margin-bottom: 10px;
+}
+
 .update-user-profile > * {
   margin: 10px 0 0 0;
 }
@@ -81,8 +128,9 @@ h1 {
 
 .interests-display span h3 {
   background-color: #69c;
-  padding: 3px 10px;
+  padding: 5px 10px;
   color: white;
+  font-weight: bold;
 }
 
 .interests-display form label, .interests-display div {
@@ -93,6 +141,14 @@ h1 {
 
 .interests-display form label {
   color: #0049ac;
+}
+
+.online-status {
+  width: 75px;
+}
+
+.online-status img {
+  width: 100%
 }
 
 .general-info div:nth-child(odd) {
@@ -112,14 +168,23 @@ h1 {
   width: 800px;
 }
 
+.user-profile-image {
+  margin-bottom: 10px;
+}
+
+.user-profile-image img {
+  width: 100%;
+}
+
 .user-image img {
   width: 100%;
 }
 
 h2 {
-  padding: 3px 10px;
+  padding: 6px 10px;
   color: #fa9128;
   background-color: #ffd4a7;
+  font-weight: bold;
 }
 
 .left-col {

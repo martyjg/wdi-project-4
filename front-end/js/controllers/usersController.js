@@ -201,6 +201,7 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload, $state
     self.currentUser = CurrentUser.saveUser(user);
     console.log(self.currentUser._id);
     $state.go('profile', { id: self.currentUser._id });
+    return self.currentUser;
   }
 
   function register() {
