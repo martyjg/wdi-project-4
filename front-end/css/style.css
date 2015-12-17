@@ -42,6 +42,20 @@ li {
   margin: 0 auto;
 }
 
+.interests-display {
+  border: 2px solid #69c;
+}
+
+.interests-display span {
+  background-color: #69c;
+}
+
+.interests-display form label, .interests-display div {
+  box-sizing: border-box;
+  background-color: #bcdaf6;
+  border: 2px solid white;
+}
+
 .home {
   margin: 0 auto;
   width: 800px;

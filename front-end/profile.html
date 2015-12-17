@@ -1,12 +1,11 @@
 <section ng-show="users.checkLoggedIn()" id="profile" class="pure-g">
   <!-- <h1 ng-show="users.checkLoggedIn()">HELLO  THIS IS THE PROFILE PAGE</h1> -->
 
-  <div class="pure-u-md-10-24 pure-u-1 left-col">
+  <div class="pure-u-sm-10-24 pure-u-1 left-col">
 
     <div id="profile-image-status" class="pure-g">
       <div class="pure-u-1 user-name-header">
         <h1 class="user-name">{{ users.user.local.username }}</h1>
-        <span>USERS STATUS</span>
       </div>
 
       <div class="pure-u-10-24 user-image">
@@ -14,35 +13,60 @@
       </div>
 
       <div class="pure-u-14-24 user-last-login-views">
-        USER LAST LOGIN AND VIEWS
-      </div>
-    </div>
+        <h3 ng-if="users.user.local.tagline">"{{ users.user.local.tagline }}"</h3>
+        <h3>{{ users.user.local.location }}</h3>
+        <h3>{{ users.user.local.mood }}</h3>
 
-    <div class="pure-u-1 user-mood-pics">
-      <span>USERS MOOD</span>
-      <span><a href="#" ui-sref="album">SEE MY PICS?</a></span>
+      </div>
     </div>
 
     <div ng-show="users.checkCurrentUser(users.user)" class="pure-u-1 update-user-profile">
       <h2 ng-hide="users.inEditMode"><a href="#" ng-click="users.editMode()">Enter edit mode</a></h2>
-      <div class="pure-u-1">
-      {{ users.user.local.username }}'s Interests
-        <form class="pure-g" name="users.editForm" ng-submit="users.editProfile(); users.editMode()" ng-show="users.inEditMode" novalidate>
+      <div class="pure-u-1 interests-display">
+        <span class="pure-u-1"> {{ users.user.local.username }}'s Interests </span>
+        <form class="pure-g" name="users.editForm" ng-submit="users.editProfile(users.user); users.editMode()" ng-show="users.inEditMode" novalidate>
+
+          <label for="tagline" class="pure-u-10-24">Tagline:</label>
+          <div class="pure-u-14-24">
+          <input type="text" name="tagline" placeholder="tagline" ng-model="users.user.local.tagline">
+          </div>
+          <label for="location" class="pure-u-10-24">Location:</label>
+          <div class="pure-u-14-24">
+          <input type="text" name="location" placeholder="location" ng-model="users.user.local.location">
+          </div>
+          <label for="mood" class="pure-u-10-24">Mood:</label>
+          <div class="pure-u-14-24">
+          <input type="text" name="mood" placeholder="mood" ng-model="users.user.local.mood">
+          </div>
+
+<!--           <label for="location" class="pure-u-8-24">Location:</label>
+          <label for="mood" class="pure-u-8-24">Mood:</label> -->
+
 
           <label for="general" class="pure-u-10-24">General</label>
-          <textarea type="text" class="pure-u-12-24" name="general" placeholder="general" ng-model="users.user.local.general"></textarea>
+          <div class="pure-u-14-24">
+          <textarea type="text" name="general" placeholder="general" ng-model="users.user.local.general"></textarea>
+          </div>
 
           <label for="music" class="pure-u-10-24">Music</label>
-          <textarea type="text" class="pure-u-12-24" name="music" placeholder="music" ng-model="users.user.local.music"></textarea>
+          <div class="pure-u-14-24">
+          <textarea type="text" name="music" placeholder="music" ng-model="users.user.local.music"></textarea>
+          </div>
 
           <label for="films" class="pure-u-10-24">Films</label>
-          <textarea type="text" class="pure-u-12-24" name="films" placeholder="films" ng-model="users.user.local.films"></textarea>
+          <div class="pure-u-14-24">
+          <textarea type="text" name="films" placeholder="films" ng-model="users.user.local.films"></textarea>
+          </div>
 
           <label for="television" class="pure-u-10-24">Television</label>
-          <textarea type="text" class="pure-u-12-24" name="television" placeholder="television" ng-model="users.user.local.television"></textarea>
+          <div class="pure-u-14-24">
+          <textarea type="text" name="television" placeholder="television" ng-model="users.user.local.television"></textarea>
+          </div>
 
           <label for="books" class="pure-u-10-24">Books</label>
-          <textarea type="text" class="pure-u-12-24" name="books" placeholder="books" ng-model="users.user.local.books"></textarea>
+          <div class="pure-u-14-24">
+          <textarea type="text" name="books" placeholder="books" ng-model="users.user.local.books"></textarea>
+          </div>
 
           <button type="submit">Save Changes</button>
 
@@ -51,31 +75,31 @@
           <div class="pure-u-10-24">
             General
           </div>
-          <div class="pure-u-12-24">
+          <div class="pure-u-14-24">
             {{ users.user.local.general }}
           </div>
           <div class="pure-u-10-24">
             Music
           </div>
-          <div class="pure-u-12-24">
+          <div class="pure-u-14-24">
             {{ users.user.local.music }}
           </div>
           <div class="pure-u-10-24">
             Films
           </div>
-          <div class="pure-u-12-24">
+          <div class="pure-u-14-24">
             {{ users.user.local.films }}
           </div>
           <div class="pure-u-10-24">
             Television
           </div>
-          <div class="pure-u-12-24">
+          <div class="pure-u-14-24">
             {{ users.user.local.television }}
           </div>
           <div class="pure-u-10-24">
             Books
           </div>
-          <div class="pure-u-12-24">
+          <div class="pure-u-14-24">
             {{ users.user.local.books }}
           </div>
         </div>
@@ -119,7 +143,7 @@
     </div>
   </div>
 
-  <div class="pure-u-md-14-24 pure-u-1 right-col">
+  <div class="pure-u-sm-14-24 pure-u-1 right-col">
 
     <div class="pure-g profile-friends">
       <h2 class="pure-u-1">{{ users.user.local.username }}'s Friend Space</h2>

@@ -15,7 +15,7 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
   self.getUsers              = getUsers;
 
   self.currentUser           = CurrentUser.getUser();
-  
+
   self.checkCurrentUser      = checkCurrentUser;
   self.getComments           = getComments;
   self.register              = register;
@@ -70,9 +70,10 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
     // checkCurrentUser(user);
   }
 
-  function editProfile() {
+  function editProfile(user) {
     // console.log(currentUser)
-    User.update({id: self.currentUser._id}, self.currentUser, function(user) {
+    User.update({id: user._id}, user, function(user) {
+      console.log(user);
     })
   }
 

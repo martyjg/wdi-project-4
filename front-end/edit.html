@@ -1,7 +1,7 @@
 <h1>A form to edit the user goes here. They should be adding a picture and updating their mood n stuff</h1>
 
 <section id="edit" ng-show="users.checkLoggedIn()">
-  <form name="users.editForm" ng-submit="users.editProfile()" novalidate>
+  <form name="users.editForm" ng-submit="users.editProfile(users.currentUser)" novalidate>
 
     <label for="username">Username</label>
     <input type="text" name="username" placeholder="Username" ng-model="users.currentUser.local.username">

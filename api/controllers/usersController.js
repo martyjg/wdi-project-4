@@ -31,6 +31,9 @@ function usersUpdate(req, res){
     if (req.body.local.films) user.local.films = req.body.local.films;
     if (req.body.local.television) user.local.television = req.body.local.television;
     if (req.body.local.books) user.local.books = req.body.local.books;
+    if (req.body.local.tagline) user.local.tagline = req.body.local.tagline;
+    if (req.body.local.mood) user.local.mood = req.body.local.mood;
+    if (req.body.local.location) user.local.location = req.body.local.location;
     
     user.save(function(err) {
      if (err) return res.status(500).json({message: "Something went wrong!"});

@@ -13,7 +13,10 @@ var userSchema = mongoose.Schema({
     music: { type: String},
     films: { type: String},
     television: { type: String},
-    books: { type: String}
+    books: { type: String},
+    tagline: { type: String},
+    mood: { type: String},
+    location: { type: String}
   },
   requests: [{ type: mongoose.Schema.ObjectId, ref: "User" }],
   friends: [{ type: mongoose.Schema.ObjectId, ref: "User" }],
