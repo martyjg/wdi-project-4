@@ -23,7 +23,47 @@
       <span><a href="#" ui-sref="album">SEE MY PICS?</a></span>
     </div>
 
-    <h2><a href="#" ng-click="users.sendRequest(users.user)">Add me as a friend</a></h2>
+    <div ng-show="users.checkCurrentUser(users.user)" class="pure-u-1 update-user-profile">
+      <h2 ng-show="users.checkCurrentUser(users.user)"><a href="#" ng-click="users.sendRequest(users.user)">possible edit mode button here</a></h2>
+      <form class="pure-g" name="users.editForm" ng-submit="users.editProfile()" novalidate>
+
+        <label for="general" class="pure-u-10-24">General</label>
+        <textarea type="text" class="pure-u-12-24" name="general" placeholder="general" ng-model="users.currentUser.local.general"></textarea>
+
+        <label for="music" class="pure-u-10-24">Music</label>
+        <textarea type="text" class="pure-u-12-24" name="music" placeholder="music" ng-model="users.currentUser.local.music"></textarea>
+
+        <label for="films" class="pure-u-10-24">Films</label>
+        <textarea type="text" class="pure-u-12-24" name="films" placeholder="films" ng-model="users.currentUser.local.films"></textarea>
+
+        <label for="television" class="pure-u-10-24">Television</label>
+        <textarea type="text" class="pure-u-12-24" name="television" placeholder="television" ng-model="users.currentUser.local.television"></textarea>
+
+        <label for="books" class="pure-u-10-24">Books</label>
+        <textarea type="text" class="pure-u-12-24" name="books" placeholder="books" ng-model="users.currentUser.local.books"></textarea>
+
+        <button type="submit">Save Changes</button>
+
+      </form>
+    </div>
+    <div ng-model="users.currentUser.local.general">{{ users.currentUser.local.general }}</div>
+
+    <div ng-hide="users.checkCurrentUser(users.user)" class="pure-u-1 view-updated-user-profile">
+      <h2 ng-hide="users.checkCurrentUser(users.user)"><a href="#" ng-click="users.sendRequest(users.user)">Add me as a friend</a></h2>
+      Here's a thing that isnt a form that will show all the details for the selected user lol
+      <div class="pure-u-10-24">
+        General
+      </div>
+      <div class="pure-u-14-24">
+        Just general information about meee
+      </div>
+      <div class="pure-u-10-24">
+        Music
+      </div>
+      <div class="pure-u-14-24">
+        TECHNO PUNK GOTH HIPHOP DISCO
+        </div>
+    </div>
 
   </div>
 
@@ -56,8 +96,8 @@
         </div>
 
         <div class="pure-u-20-24">
-        <li>{{ comment.commentDate | date:'medium' }}</li>
-        <li>{{ comment.commentPost }}</li>
+          <li>{{ comment.commentDate | date:'medium' }}</li>
+          <li>{{ comment.commentPost }}</li>
         </div>
       </div>
     </div> 

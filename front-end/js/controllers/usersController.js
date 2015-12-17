@@ -13,6 +13,7 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
   self.user                  = {};
   self.user.receivedComments = [];
   self.getUsers              = getUsers;
+  self.checkCurrentUser      = checkCurrentUser;
   self.getComments           = getComments;
   self.register              = register;
   self.showUser              = showUser;
@@ -45,12 +46,23 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
     })
   }
 
+  function checkCurrentUser(user) {
+    if (user._id == self.currentUser._id) {
+      console.log("THIS IS YOUR PAGE");
+      return true
+    } else {
+      console.log("this is not your page :( ");
+      return false;
+    }
+  }
+
   function showUser(user) {
     var userId = user._id;
     User.get({id: userId}, function(data) {
       self.user = data.user;
       self.user.receivedComments = listUsersComments(self.user);
     })
+    // checkCurrentUser(user);
   }
 
   function editProfile() {
