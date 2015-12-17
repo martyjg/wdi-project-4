@@ -8,10 +8,16 @@ function usersIndex(req, res) {
 }
 
 function usersShow(req, res){
-
   User.findById(req.params.id).populate("requests").populate("friends").exec(function(err, user) {
     if (err) return res.status(404).json({message: 'Something went wrong.'});
-    res.status(200).json({ user: user });
+    res.status(200).json({ user: user});   
+  })
+}
+
+function usersPending(req, res){
+  User.find({'requests': req.params.id}, function(err, pending) {
+    if (err) return res.status(404).json({message: 'Something went wrong.'});
+    res.status(200).json({ pending: pending })
   })
 }
 
@@ -109,5 +115,6 @@ module.exports = {
   usersUpdate: usersUpdate,
   usersSendFriendRequest: usersSendFriendRequest,
   usersAcceptFriendRequest: usersAcceptFriendRequest,
-  usersDenyFriendRequest: usersDenyFriendRequest
+  usersDenyFriendRequest: usersDenyFriendRequest,
+  usersPending: usersPending
 }

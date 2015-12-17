@@ -21,7 +21,8 @@ function User($resource, API){
     'sendFriendRequest':   { url: API + '/users/:id' + "/friendrequest", method: "PUT" },
     'update':              { method: 'PUT' },
     'register':            { url: API + '/register', method: "POST" },
-    'login':               { url: API + '/login', method: "POST" }
+    'login':               { url: API + '/login', method: "POST" },
+    'pending':             { url: API + '/users/:id/pending', method: "GET" }
     }
   );
 }

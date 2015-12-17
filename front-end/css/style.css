@@ -32,11 +32,13 @@ header {
   width: 790px;
   margin: 0 auto;
   padding: 5px;
+  text-align: right;
 }
 
 .top-nav li {
   list-style: none;
-  float: right;
+  display: inline-block;
+  text-align: right;
   padding: 0 5px;
 }
 

@@ -22,7 +22,25 @@ var userSchema = mongoose.Schema({
   friends: [{ type: mongoose.Schema.ObjectId, ref: "User" }],
   // comments: [{ type: mongoose.Schema.ObjectId, ref: "Comment" }]
   comments: [Comment.schema]
+},{
+  toObject: { virtuals: true },
+  toJSON: { virtuals: true }
 });
+
+// userSchema.options.toJSON = {
+//   transform: function(doc, ret, options) {
+//     delete ret.__v;
+//     delete ret.password;
+//     return ret;
+//   }
+// };
+
+// userSchema.virtual('pending').get(function () {
+//   return User.find({'requests': id}, function(err, pending) {
+//     if (err) return false;
+//     return pending;
+//   })  
+// })
 
 userSchema.statics.encrypt = function(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);

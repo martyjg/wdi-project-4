@@ -4,13 +4,13 @@
   <title>MySpace</title>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular-messages.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+  <script src="./bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="./bower_components/ng-file-upload/ng-file-upload.min.js"></script>
   <script type="text/javascript" src="https://cdn.rawgit.com/auth0/angular-jwt/master/dist/angular-jwt.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-resource.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
   <script type="text/javascript" src="./js/app.js"></script>
-  <script src="./bower_components/ng-file-upload/ng-file-upload.min.js"></script>
   <script type="text/javascript" src="./js/services/tokenService.js"></script>
   <script type="text/javascript" src="./js/services/authInterceptor.js"></script>
   <script type="text/javascript" src="./js/services/currentUser.js"></script>
@@ -23,19 +23,21 @@
   <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
   <link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
-<body ng-controller="UsersController as users">
-  <header>
-    <img src="./css/images/MySpaceLogo.gif">
-  </header>
-  <div class="top-nav">
-    <li ng-show="users.checkLoggedIn()"><a href="#" ui-sref="profile" ng-click="users.showUser(users.currentUser)">My Profile</a></li>
-    <li><a href="#" ui-sref="home" ng-click="users.getRequests()">Home</a></li>
-    <li ng-show="users.checkLoggedIn()"><a href="#" ng-click="users.logout()">Logout</a></li>
-    <li ng-show="users.checkLoggedIn()"><a href="#" ui-sref="edit">My Account</a></li>
+<body>
+  <div ng-controller="UsersController as users">
+    <header>
+      <img src="./css/images/MySpaceLogo.gif">
+    </header>
+    <div class="top-nav">
+      <ul>
+        <li><a href="#" ui-sref="home" ng-click="users.getRequests()">Home</a></li>
+        <li ng-show="users.checkLoggedIn()"><a href="#" ui-sref="edit">My Account</a></li>
+        <li ng-show="users.checkLoggedIn()"><a href="#" ui-sref="profile({ id: users.currentUser._id})">My Profile</a></li>      
+        <li ng-show="users.checkLoggedIn()"><a href="#" ng-click="users.logout()">Logout</a></li>
+      </ul>
+    </div>
   </div>
 
   <main ui-view></main>
-
-
 </body>
 </html>

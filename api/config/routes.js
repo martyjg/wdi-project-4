@@ -15,6 +15,9 @@ router.route('/users/:id')
   .get(usersController.usersShow)
   .put(usersController.usersUpdate);
 
+router.route('/users/:id/pending')
+  .get(usersController.usersPending);
+
 router.route('/users/:id/friendrequest')
   .put(usersController.usersSendFriendRequest)
 

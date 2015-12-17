@@ -2,10 +2,15 @@ angular
 .module('MySpace')
 .controller('UsersController', UsersController);
 
-UsersController.$inject = ['User', 'TokenService', 'CurrentUser', '$state', 'Upload'];
-function UsersController(User, TokenService, CurrentUser, $state, Upload){
+UsersController.$inject = ['User', 'TokenService', 'CurrentUser', '$state', 'Upload', '$stateParams', '$window'];
+function UsersController(User, TokenService, CurrentUser, $state, Upload, $stateParams, $window){
 
   var self = this;
+
+  if ($stateParams.id) {
+    console.log("1.", $stateParams.id);
+    showUser($stateParams.id);
+  }
 
   self.file                  = null;
   self.all                   = [];
@@ -13,9 +18,7 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
   self.user                  = {};
   self.user.receivedComments = [];
   self.getUsers              = getUsers;
-
   self.currentUser           = CurrentUser.getUser();
-
   self.checkCurrentUser      = checkCurrentUser;
   self.getComments           = getComments;
   self.register              = register;
@@ -61,11 +64,10 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
     }
   }
 
-  function showUser(user) {
-    console.log(self.currentUser)
+  function showUser(id) {
     self.inEditMode = false;
-    var userId = user._id;
-    User.get({id: userId}, function(data) {
+    console.log("2", id)
+    User.get({id: id}, function(data) {
       self.user = data.user;
       self.user.receivedComments = listUsersComments(self.user);
     })
@@ -98,16 +100,21 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
   }
 
   function getRequests() {
-    self.currentUser.pendingRequests = [];
-    var receiverId = self.currentUser._id;
-    for (i = 0; i < self.all.length; i++) {
-      for (j = 0; j < self.all[i].requests.length; j++) {
-        if (self.all[i].requests[j] == receiverId) {
-          self.currentUser.pendingRequests.push(self.all[i])
-        }
-      }
-    }
-    self.currentUser.pendingRequests
+    // self.currentUser.pendingRequests = [];
+    // var receiverId = self.currentUser._id;
+    // for (i = 0; i < self.all.length; i++) {
+    //   for (j = 0; j < self.all[i].requests.length; j++) {
+    //     if (self.all[i].requests[j] == receiverId) {
+    //       self.currentUser.pendingRequests.push(self.all[i])
+    //     }
+    //   }
+    // }
+    // return self.currentUser.pendingRequests
+    
+    User.pending({id: self.currentUser._id}, function(data) {
+      console.log(data);
+      return self.currentUser.pendingRequests = data.pending;
+    })
   }
 
   function acceptRequest(user) {
@@ -192,8 +199,8 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
 
     var user = TokenService.decodeToken();
     self.currentUser = CurrentUser.saveUser(user);
-    showUser(self.currentUser);
-    $state.go('profile');
+    console.log(self.currentUser._id);
+    $state.go('profile', { id: self.currentUser._id });
   }
 
   function register() {
@@ -233,6 +240,7 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
   if (CurrentUser.getUser()) {
     self.currentUser = CurrentUser.getUser();
     self.getUsers();
+    self.getRequests()
   } else {
     console.log("NO CURRENT USER");
   }
