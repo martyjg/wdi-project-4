@@ -158,8 +158,8 @@
 
     <div class="pure-g profile-comments">
       <h2 class="pure-u-1">{{ users.user.local.username }}'s Friends Comments</h2>
-      <span class="pure-u-1 comments-count">Displaying {{ users.user.receivedComments.length }} of {{ users.user.receivedComments.length }} comments</span>
-      <form class="pure-u-1" name="users.submitComment" ng-submit="users.saveComment(users.user)" novalidate>
+      <span class="pure-u-1 comments-count">Displaying {{ users.user.receivedComments.length }} of {{ users.user.receivedComments.length }} comments <a href="#" ng-hide="users.inCommentMode" ng-click="users.showCommentBox()">Add Comment</a></span>
+      <form ng-show="users.inCommentMode" class="pure-u-1" name="users.submitComment" ng-submit="users.saveComment(users.user); users.showCommentBox()" novalidate>
         <textarea name="post" rows=4 ng-model="users.currentUser.comment.post" placeholder="Enter Comment"></textarea>
         <button>Submit Comment</button>
       </form>

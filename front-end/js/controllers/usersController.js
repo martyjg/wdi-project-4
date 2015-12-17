@@ -28,6 +28,8 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
   self.denyRequest           = denyRequest;
   self.hideRequest           = hideRequest;
   self.getRequests           = getRequests;
+  self.showCommentBox        = showCommentBox;
+  self.inCommentMode         = false;
   self.saveComment           = saveComment;
   self.login                 = login;
   self.logout                = logout;
@@ -123,6 +125,14 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
     User.denyFriendRequest({id: user._id}, self.currentUser, function(user) {
     })
     // showUser(self.currentUser);
+  }
+
+  function showCommentBox() {
+    if (self.inCommentMode === false) {
+      return self.inCommentMode = true;
+    } else {
+      return self.inCommentMode = false;
+    }
   }
 
   function saveComment(user) {
