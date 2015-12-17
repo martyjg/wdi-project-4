@@ -18,6 +18,8 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
   self.register              = register;
   self.showUser              = showUser;
   self.editProfile           = editProfile;
+  self.editMode              = editMode;
+  self.inEditMode            = false;
   self.sendRequest           = sendRequest;
   self.acceptRequest         = acceptRequest;
   self.denyRequest           = denyRequest;
@@ -52,16 +54,16 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
       return true
     } else {
       console.log("this is not your page :( ");
-      return false;
+        return false;
+      }
     }
-  }
 
-  function showUser(user) {
-    var userId = user._id;
-    User.get({id: userId}, function(data) {
-      self.user = data.user;
-      self.user.receivedComments = listUsersComments(self.user);
-    })
+    function showUser(user) {
+      var userId = user._id;
+      User.get({id: userId}, function(data) {
+        self.user = data.user;
+        self.user.receivedComments = listUsersComments(self.user);
+      })
     // checkCurrentUser(user);
   }
 
@@ -69,6 +71,14 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload){
     // console.log(currentUser)
     User.update({id: self.currentUser._id}, self.currentUser, function(user) {
     })
+  }
+
+  function editMode() {
+    if (self.inEditMode === false) {
+      return self.inEditMode = true;
+    } else {
+      return self.inEditMode = false;
+    }
   }
 
   function sendRequest(receiver) {

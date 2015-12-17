@@ -24,8 +24,8 @@
     </div>
 
     <div ng-show="users.checkCurrentUser(users.user)" class="pure-u-1 update-user-profile">
-      <h2 ng-show="users.checkCurrentUser(users.user)"><a href="#" ng-click="users.sendRequest(users.user)">possible edit mode button here</a></h2>
-      <form class="pure-g" name="users.editForm" ng-submit="users.editProfile()" novalidate>
+      <h2 ng-show="users.checkCurrentUser(users.user)"><a href="#" ng-click="users.editMode()">possible edit mode button here</a></h2>
+      <form class="pure-g" name="users.editForm" ng-submit="users.editProfile(); users.editMode()" ng-show="users.inEditMode" novalidate>
 
         <label for="general" class="pure-u-10-24">General</label>
         <textarea type="text" class="pure-u-12-24" name="general" placeholder="general" ng-model="users.currentUser.local.general"></textarea>
@@ -45,30 +45,79 @@
         <button type="submit">Save Changes</button>
 
       </form>
+      <div class="pure-g general-info" ng-hide="users.inEditMode">
+        <div class="pure-u-10-24">
+          General
+        </div>
+        <div class="pure-u-12-24">
+          {{ users.currentUser.local.general }}
+        </div>
+        <div class="pure-u-10-24">
+          Music
+        </div>
+        <div class="pure-u-12-24">
+          {{ users.currentUser.local.music }}
+        </div>
+        <div class="pure-u-10-24">
+          Films
+        </div>
+        <div class="pure-u-12-24">
+          {{ users.currentUser.local.films }}
+        </div>
+        <div class="pure-u-10-24">
+          Television
+        </div>
+        <div class="pure-u-12-24">
+          {{ users.currentUser.local.television }}
+        </div>
+        <div class="pure-u-10-24">
+          Books
+        </div>
+        <div class="pure-u-12-24">
+          {{ users.currentUser.local.books }}
+        </div>
+      </div>
     </div>
-    <div ng-model="users.user.local.general">{{ users.user.local.general }}</div>
 
     <div ng-hide="users.checkCurrentUser(users.user)" class="pure-u-1 view-updated-user-profile">
       <h2 ng-hide="users.checkCurrentUser(users.user)"><a href="#" ng-click="users.sendRequest(users.user)">Add me as a friend</a></h2>
-      Here's a thing that isnt a form that will show all the details for the selected user lol
-      <div class="pure-u-10-24">
-        General
-      </div>
-      <div class="pure-u-14-24">
-        Just general information about meee
-      </div>
-      <div class="pure-u-10-24">
-        Music
-      </div>
-      <div class="pure-u-14-24">
-        TECHNO PUNK GOTH HIPHOP DISCO
+      <div class="pure-g general-info">
+        <div class="pure-u-10-24">
+          General
         </div>
+        <div class="pure-u-12-24">
+          {{ users.user.local.general }}
+        </div>
+        <div class="pure-u-10-24">
+          Music
+        </div>
+        <div class="pure-u-12-24">
+          {{ users.user.local.music }}
+        </div>
+        <div class="pure-u-10-24">
+          Films
+        </div>
+        <div class="pure-u-12-24">
+          {{ users.user.local.films }}
+        </div>
+        <div class="pure-u-10-24">
+          Television
+        </div>
+        <div class="pure-u-12-24">
+          {{ users.user.local.television }}
+        </div>
+        <div class="pure-u-10-24">
+          Books
+        </div>
+        <div class="pure-u-12-24">
+          {{ users.user.local.books }}
+        </div>
+      </div>
     </div>
-
   </div>
 
   <div class="pure-u-md-14-24 pure-u-1 right-col">
-    wordup
+
     <div class="pure-g profile-friends">
       <h2 class="pure-u-1">{{ users.user.local.username }}'s Friend Space</h2>
       <span class="pure-u-1 friends-count">{{ users.user.local.username }} has {{ users.user.friends.length }} friends</span>
@@ -78,7 +127,6 @@
           <li class="user-image"><img ng-src="{{ friend.local.picture }}" ng-click="users.showUser(friend)" ui-sref="profile"></li>
         </ul>
       </div>
-
     </div>
 
     <div class="pure-g profile-comments">
@@ -100,6 +148,8 @@
           <li>{{ comment.commentPost }}</li>
         </div>
       </div>
-    </div> 
+    </div>
+    
+  </div> 
 
-  </section>
+</section>
