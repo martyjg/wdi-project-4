@@ -1,3 +1,11 @@
+/*
+navy: #0049ac
+light blue: #69c
+dark orange: #fa9128
+light orange: #ffd4a7
+*/
+
+
 * {
   font-family: Verdana, Geneva, sans-serif !important;
 }
@@ -34,6 +42,10 @@ header {
 
 li {
   list-style: none;
+}
+
+h1 {
+  margin-bottom: 20px;
 }
 
 #profile {
@@ -136,11 +148,35 @@ h2 {
 }
 
 .profile-friend ul {
+  padding: 10px;
+}
+
+.profile-friend ul li {
+  text-align: center;
+}
+
+.profile-friend ul li:first-child {
+  margin-bottom: 5px;
+}
+
+.username-picture-comment-column li {
+  text-align: center;
+  color: #0049ac;
+  background-color: #fa9128;
+  padding: 4px;
+}
+
+.post-date-comment-column {
+  box-sizing: border-box;
+  border-left: 3px solid white;
+  background-color: #ffd4a7;
+}
+
+.post-date-comment-column li {
   padding: 5px;
 }
 
-/*.profile-comments*/
-
 .received-comment {
   width: 100%;
+  margin-top: 10px;
 }
