@@ -57,6 +57,10 @@ li {
   margin: 10px 0 0 0;
 }
 
+.updated-user-profile > * {
+  margin: 10px 0 0 0;
+}
+
 .interests-display {
   border: 2px solid #69c;
 }
@@ -71,6 +75,14 @@ li {
   box-sizing: border-box;
   background-color: #bcdaf6;
   border: 2px solid white;
+}
+
+.interests-display form label {
+  color: #0049ac;
+}
+
+.general-info div:nth-child(odd) {
+  color: #0049ac;
 }
 
 .interests-display form label, .interests-display div div {
@@ -126,6 +138,8 @@ h2 {
 .profile-friend ul {
   padding: 5px;
 }
+
+/*.profile-comments*/
 
 .received-comment {
   width: 100%;
