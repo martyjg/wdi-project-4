@@ -20,10 +20,10 @@
       </div>
     </div>
 
-    <div ng-show="users.checkCurrentUser(users.user)" class="pure-u-1 update-user-profile">
-      <h2 ng-hide="users.inEditMode"><a href="#" ng-click="users.editMode()">Enter edit mode</a></h2>
+    <div ng-show="users.checkCurrentUser(users.user)" class="pure-g update-user-profile">
+      <h2 class="pure-u-1 profile-option-button" ng-hide="users.inEditMode"><a href="#" ng-click="users.editMode()">Enter edit mode</a></h2>
       <div class="pure-u-1 interests-display">
-        <span class="pure-u-1"> {{ users.user.local.username }}'s Interests </span>
+        <span class="pure-u-1"><h3 class="interests-heading"> {{ users.user.local.username }}'s Interests </h3></span>
         <form class="pure-g" name="users.editForm" ng-submit="users.editProfile(users.user); users.editMode()" ng-show="users.inEditMode" novalidate>
 
           <label for="tagline" class="pure-u-10-24">Tagline:</label>
@@ -107,7 +107,7 @@
     </div>
 
     <div ng-hide="users.checkCurrentUser(users.user)" class="pure-u-1 view-updated-user-profile">
-      <h2 ng-hide="users.checkCurrentUser(users.user)"><a href="#" ng-click="users.sendRequest(users.user)">Add me as a friend</a></h2>
+      <h2 class="profile-option-button" ng-hide="users.checkCurrentUser(users.user)"><a href="#" ng-click="users.sendRequest(users.user)">Add me as a friend</a></h2>
       <div class="pure-g general-info">
         <div class="pure-u-10-24">
           General

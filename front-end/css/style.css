@@ -42,18 +42,43 @@ li {
   margin: 0 auto;
 }
 
+.profile-option-button {
+  text-align: center;
+  background-color: #69c;
+} 
+
+.profile-option-button a {
+  text-align: center;
+  /*border: 2px solid white;*/
+  color: white;
+}
+
+.update-user-profile > * {
+  margin: 10px 0 0 0;
+}
+
 .interests-display {
   border: 2px solid #69c;
 }
 
-.interests-display span {
+.interests-display span h3 {
   background-color: #69c;
+  padding: 3px 10px;
+  color: white;
 }
 
 .interests-display form label, .interests-display div {
   box-sizing: border-box;
   background-color: #bcdaf6;
   border: 2px solid white;
+}
+
+.interests-display form label, .interests-display div div {
+  padding: 5px;
+}
+
+.interests-display form textarea, .interests-display form input {
+  width: 96%;
 }
 
 .home {
