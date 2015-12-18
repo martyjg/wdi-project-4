@@ -15,7 +15,7 @@
       <div class="pure-u-14-24 user-location-mood-tagline">
         <h3 ng-if="users.user.local.tagline">"{{ users.user.local.tagline }}"</h3>
         <h3>{{ users.user.local.location }}</h3>
-        <div><img ng-src="./css/images/online.gif"></div>
+        <div ng-show="users.checkCurrentUser(users.user)"><img ng-src="./css/images/online.gif"></div>
         <h3 ng-if="users.user.local.mood">Mood: {{ users.user.local.mood }}</h3>
 
       </div>
@@ -65,7 +65,7 @@
             <textarea type="text" name="books" placeholder="books" ng-model="users.user.local.books"></textarea>
           </div>
 
-          <button type="submit">Save Changes</button>
+          <button class="submit-edit-button" type="submit">Save Changes</button>
 
         </form>
         <div class="pure-g general-info" ng-hide="users.inEditMode">
@@ -160,9 +160,9 @@
     <div class="pure-g profile-comments">
       <h2 class="pure-u-1">{{ users.user.local.username }}'s Friends Comments</h2>
       <span class="pure-u-1 comments-count">Displaying {{ users.user.receivedComments.length }} of {{ users.user.receivedComments.length }} comments <a href="#" ng-hide="users.inCommentMode" ng-click="users.showCommentBox()">Add Comment</a></span>
-      <form ng-show="users.inCommentMode" class="pure-u-1" name="users.submitComment" ng-submit="users.saveComment(users.user); users.showCommentBox()" novalidate>
-        <textarea name="post" rows=4 ng-model="users.currentUser.comment.post" placeholder="Enter Comment"></textarea>
-        <button>Submit Comment</button>
+      <form ng-show="users.inCommentMode" class="pure-u-1 comment-form" name="users.submitComment" ng-submit="users.saveComment(users.user); users.showCommentBox()" novalidate>
+        <textarea name="post" class="pure-u-1 comment-text-box" rows=4 ng-model="users.currentUser.comment.post" placeholder="Enter Comment"></textarea>
+        <div class="pure-u-1"><button class="submit-comment-button">Submit Comment</button></div>
       </form>
 
       <div class="pure-g received-comment" ng-repeat="comment in users.user.receivedComments | orderBy: '-commentDate': reverse">

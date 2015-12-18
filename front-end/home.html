@@ -39,23 +39,23 @@
 <section ng-hide="users.checkLoggedIn()" id="home-logged-out" class="pure-g home">
 
   <section class="pure-u-14-24 left-col" id="login">
-  <div class="pure-g>"
-  <h2 class="pure-u-1">Login</h2>
-    <form class="pure-g login-form" name="users.loginForm" ng-submit="users.login()" novalidate>
+    <div class="pure-g">
+      <h2 class="pure-u-1">Login</h2>
+      <form class="pure-g login-form" name="users.loginForm" ng-submit="users.login()" novalidate>
 
-      <label for="email" class="pure-u-10-24">Email</label>
-      <div class="pure-u-14-24">
-      <input type="text" name="email" placeholder="Enter your email" ng-model="users.user.email" required>
-      </div>
+        <label for="email" class="pure-u-10-24">Email</label>
+        <div class="pure-u-14-24">
+          <input type="text" name="email" placeholder="Enter your email" ng-model="users.user.email" required>
+        </div>
 
-      <label for="password" class="pure-u-10-24">Password</label>
-      <div class="pure-u-14-24">
-      <input type="password" class="pure-u-14-24" name="password" placeholder="Enter your password" ng-model="users.user.password" required>
-      </div>
+        <label for="password" class="pure-u-10-24">Password</label>
+        <div class="pure-u-14-24">
+          <input type="password" class="pure-u-14-24" name="password" placeholder="Enter your password" ng-model="users.user.password" required>
+        </div>
 
-      <button class="pure-u-1" type="submit">Login</button><a class="pure-u-1" href="#" ui-sref="register">Register</a>
+        <button class="pure-u-1" type="submit">Login</button><a class="pure-u-1" href="#" ui-sref="register">Register</a>
 
-    </form>
+      </form>
     </div>
   </section>
 

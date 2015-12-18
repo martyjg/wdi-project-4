@@ -31,8 +31,11 @@
     <div class="top-nav">
       <ul>
         <li><a href="#" ui-sref="home" ng-click="users.getRequests()">Home</a></li>
+        <li ng-show="users.checkLoggedIn()">|</li>
         <li ng-show="users.checkLoggedIn()"><a href="#" ui-sref="edit">My Account</a></li>
-        <li ng-show="users.checkLoggedIn()"><a href="#" ui-sref="profile({ id: users.currentUser._id})">My Profile</a></li>      
+        <li ng-show="users.checkLoggedIn()">|</li>
+        <li ng-show="users.checkLoggedIn()"><a href="#" ui-sref="profile({ id: users.currentUser._id})">My Profile</a></li>
+        <li ng-show="users.checkLoggedIn()">|</li>      
         <li ng-show="users.checkLoggedIn()"><a href="#" ng-click="users.logout()">Logout</a></li>
       </ul>
     </div>
