@@ -1,7 +1,7 @@
 <section ng-show="users.checkLoggedIn()" id="home-logged-in" class="pure-g home">
 
   <div class="pure-u-sm-14-24 pure-u-1 left-col">
-    <div class="pure-g" ng-hide="users.currentUser.pendingRequests">
+  <div class="pure-g" ng-show="users.currentUser.pendingRequests">
       <h2 class="pure-u-1">PENDING FRIEND REQUESTS</h2>
       <ul class="pure-u-6-24">
         <li>From:</li>
