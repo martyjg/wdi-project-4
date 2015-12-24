@@ -199,22 +199,15 @@ h2 {
   font-weight: bold;
 }
 
-.left-col {
-  /*background-color: red;*/
+.left-col, .right-col {
   margin: 10px 0;
 }
 
-.right-col {
-  /*background-color: cyan;*/
-  margin: 10px 0;
-}
 .left-col > * {
-  /*background-color: red;*/
   padding: 0 8px;
 }
 
 .right-col > * {
-  /*background-color: cyan;*/
   padding: 0 8px;
 }
 

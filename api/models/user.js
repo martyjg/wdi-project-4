@@ -27,21 +27,6 @@ var userSchema = mongoose.Schema({
   toJSON: { virtuals: true }
 });
 
-// userSchema.options.toJSON = {
-//   transform: function(doc, ret, options) {
-//     delete ret.__v;
-//     delete ret.password;
-//     return ret;
-//   }
-// };
-
-// userSchema.virtual('pending').get(function () {
-//   return User.find({'requests': id}, function(err, pending) {
-//     if (err) return false;
-//     return pending;
-//   })  
-// })
-
 userSchema.statics.encrypt = function(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };

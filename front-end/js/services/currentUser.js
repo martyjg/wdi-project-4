@@ -23,18 +23,3 @@ function CurrentUser(TokenService){
   }
 }
 
-
-// getUser: function(){
-//   // WEIRD, as services are meant to persist data
-//   user = TokenService.decodeToken();
-//   return user;
-// },
-
-// function CurrentUser(TokenService){
-
-//   var user = null;
-
-//   return {
-
-//   }
-// }

@@ -100,17 +100,7 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload, $state
   }
 
   function getRequests() {
-    // self.currentUser.pendingRequests = [];
-    // var receiverId = self.currentUser._id;
-    // for (i = 0; i < self.all.length; i++) {
-    //   for (j = 0; j < self.all[i].requests.length; j++) {
-    //     if (self.all[i].requests[j] == receiverId) {
-    //       self.currentUser.pendingRequests.push(self.all[i])
-    //     }
-    //   }
-    // }
-    // return self.currentUser.pendingRequests
-    
+
     User.pending({id: self.currentUser._id}, function(data) {
       console.log(data);
       return self.currentUser.pendingRequests = data.pending;
@@ -121,8 +111,6 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload, $state
     var index = self.currentUser.pendingRequests.indexOf(user);
     self.currentUser.pendingRequests.splice(index, 1);
     User.acceptFriendRequest({id: user._id}, self.currentUser, function(user) {
-      // getRequests();
-      // showUser(self.currentUser);
     })
   }
 
@@ -131,7 +119,6 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload, $state
     self.currentUser.pendingRequests.splice(index, 1);
     User.denyFriendRequest({id: user._id}, self.currentUser, function(user) {
     })
-    // showUser(self.currentUser);
   }
 
   function showCommentBox() {
