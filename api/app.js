@@ -19,7 +19,9 @@ var app            = express();
 var config         = require('./config/config');
 var secret         = require('./config/config').secret;
 
-mongoose.connect(config.database);
+var mongoUri = process.env.MONGOLAB_URI || config.database;
+
+mongoose.connect(mongoUri);
 
 require('./config/passport')(passport);
 
