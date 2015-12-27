@@ -1,6 +1,6 @@
 angular
   .module("MySpace", ['ngResource', 'angular-jwt', 'ui.router', 'ngFileUpload'])
-  .constant('API', 'http://originalmyspace.com/api')
+  .constant('API', 'http://originalmyspace.herokuapp.com/api')
   .config(MainRouter)
   .config(function($httpProvider){
     $httpProvider.interceptors.push('authInterceptor')
