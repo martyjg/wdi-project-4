@@ -80,6 +80,8 @@ app.use(function (err, req, res, next) {
 var routes = require('./config/routes');
 app.use("/api", routes);
 
+app.use(express.static('front-end'));
+
 app.listen(PORT);
 
 console.log("Listening on..." + PORT)
