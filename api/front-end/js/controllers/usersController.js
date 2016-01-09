@@ -5,6 +5,8 @@ angular
 UsersController.$inject = ['User', 'TokenService', 'CurrentUser', '$state', 'Upload', '$stateParams', '$window'];
 function UsersController(User, TokenService, CurrentUser, $state, Upload, $stateParams, $window){
 
+console.log("The users stuff is working");
+
   var self = this;
 
   if ($stateParams.id) {
