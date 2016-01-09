@@ -1,0 +1,280 @@
+/*
+navy: #0049ac
+light blue: #69c
+dark orange: #fa9128
+light orange: #ffd4a7
+*/
+
+
+* {
+  font-family: Verdana, Geneva, sans-serif !important;
+  font-size: 12px;
+}
+
+body {
+  background-color: #EAEAEA;
+}
+
+section {
+  background-color: white;
+}
+
+header {
+  background-color: #039;
+  height: 90px;
+  width: 790px;
+  margin: 0 auto;
+  padding: 5px;
+}
+
+.top-nav {
+  background-color: #6698CB;
+  width: 790px;
+  margin: 0 auto;
+  padding: 5px 5px 9px 5px;
+  text-align: right;
+}
+
+.top-nav li {
+  list-style: none;
+  display: inline-block;
+  text-align: right;
+}
+
+.top-nav li:nth-child(even) {
+  color: #0049ac;
+}
+
+.top-nav ul {
+  text-align: center;
+}
+
+.top-nav ul li a {
+  font-size: 11px;
+  text-decoration: none;
+  color: white;
+}
+
+.login-form div input {
+  width: 96%;
+}
+
+.login-form > * {
+  margin-top: 10px;
+}
+
+.login-form {
+  text-align: center;
+}
+
+.login-form button {
+  margin: auto;
+  margin-top: 10px;
+  width: 100px;
+}
+
+.cool-new-person {
+  padding-top: 5px;
+  text-align: center;
+}
+
+.cool-new-person ul {
+  padding: 10px; 
+}
+
+.cool-new-person ul li {
+  margin-top: 5px;
+}
+
+li {
+  list-style: none;
+}
+
+h1 {
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+#profile {
+  background-color: white;
+  width: 800px;
+  margin: 0 auto;
+}
+
+.profile-option-button {
+  text-align: center;
+  background-color: #69c;
+} 
+
+.profile-option-button a {
+  text-align: center;
+  /*border: 2px solid white;*/
+  color: white;
+}
+
+.user-location-mood-tagline h3 {
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.user-location-mood-tagline div {
+  text-align: right;
+}
+
+.user-location-mood-tagline div img {
+  width: 75px;
+  margin-bottom: 10px;
+}
+
+.update-user-profile > * {
+  margin: 10px 0 0 0;
+}
+
+.updated-user-profile > * {
+  margin: 10px 0 0 0;
+}
+
+.interests-display {
+  border: 2px solid #69c;
+}
+
+.interests-display span h3 {
+  background-color: #69c;
+  padding: 5px 10px;
+  color: white;
+  font-weight: bold;
+}
+
+.interests-display form label, .interests-display div {
+  box-sizing: border-box;
+  background-color: #bcdaf6;
+  border: 2px solid white;
+}
+
+.interests-display form label {
+  color: #0049ac;
+}
+
+.online-status {
+  width: 75px;
+}
+
+.online-status img {
+  width: 100%
+}
+
+.general-info div:nth-child(odd) {
+  color: #0049ac;
+}
+
+.interests-display form label, .interests-display div div {
+  padding: 5px;
+}
+
+.interests-display form textarea, .interests-display form input {
+  width: 96%;
+}
+
+.home {
+  margin: 0 auto;
+  width: 800px;
+}
+
+.user-profile-image {
+  margin-bottom: 10px;
+}
+
+.user-profile-image img {
+  width: 100%;
+}
+
+.user-image img {
+  width: 100%;
+}
+
+h2 {
+  padding: 6px 10px;
+  color: #fa9128;
+  background-color: #ffd4a7;
+  font-weight: bold;
+}
+
+.left-col, .right-col {
+  margin: 10px 0;
+}
+
+.left-col > * {
+  padding: 0 8px;
+}
+
+.right-col > * {
+  padding: 0 8px;
+}
+
+.pending-fr {
+  width: 100%;
+}
+
+.pending-fr-img {
+  width: 100%;
+}
+
+.profile-friend ul {
+  padding: 10px;
+}
+
+.profile-friend ul li {
+  text-align: center;
+}
+
+.profile-friend ul li:first-child {
+  margin-bottom: 5px;
+}
+
+.username-picture-comment-column li {
+  text-align: center;
+  color: #0049ac;
+  background-color: #fa9128;
+  padding: 4px;
+}
+
+.comments-count {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.friends-count {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.post-date-comment-column {
+  box-sizing: border-box;
+  border-left: 3px solid white;
+  background-color: #ffd4a7;
+}
+
+.post-date-comment-column li {
+  padding: 5px;
+}
+
+.submit-edit-button {
+  margin: 5px auto;
+}
+
+.submit-comment-button {
+  margin: 10px 0 0 0;
+}
+
+.comment-form div {
+  text-align: center;
+}
+
+.comment-text-box {
+  width: 98.7%;
+}
+
+.received-comment {
+  width: 100%;
+  margin-top: 10px;
+}
