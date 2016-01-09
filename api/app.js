@@ -21,6 +21,8 @@ var secret         = require('./config/config').secret;
 
 var mongoUri = process.env.MONGOLAB_URI || config.database;
 
+// var mongoUri = config.database;
+
 mongoose.connect(mongoUri);
 
 require('./config/passport')(passport);

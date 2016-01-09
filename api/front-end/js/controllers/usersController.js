@@ -8,7 +8,6 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload, $state
   var self = this;
 
   if ($stateParams.id) {
-    console.log("1.", $stateParams.id);
     showUser($stateParams.id);
   }
 
@@ -40,7 +39,6 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload, $state
   self.upload                = upload;
 
   self.authenticate = function(provider) {
-    console.log(provider)
     $auth.authenticate(provider);
   };
 
@@ -68,6 +66,7 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload, $state
     self.inEditMode = false;
     console.log("2", id)
     User.get({id: id}, function(data) {
+      console.log(data);
       self.user = data.user;
       self.user.receivedComments = listUsersComments(self.user);
     })
