@@ -8,7 +8,6 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload, $state
   var self = this;
 
   if ($stateParams.id) {
-    console.log("1.", $stateParams.id);
     showUser($stateParams.id);
   }
 
@@ -40,7 +39,6 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload, $state
   self.upload                = upload;
 
   self.authenticate = function(provider) {
-    console.log(provider)
     $auth.authenticate(provider);
   };
 
@@ -66,8 +64,8 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload, $state
 
   function showUser(id) {
     self.inEditMode = false;
-    console.log("2", id)
     User.get({id: id}, function(data) {
+      console.log("This is the shown user", data)
       self.user = data.user;
       self.user.receivedComments = listUsersComments(self.user);
     })
@@ -77,7 +75,6 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload, $state
   function editProfile(user) {
     // console.log(currentUser)
     User.update({id: user._id}, user, function(user) {
-      console.log(user);
     })
   }
 
@@ -90,11 +87,9 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload, $state
   }
 
   function sendRequest(receiver) {
-    console.log(receiver);
     var receiverId = receiver._id;
     var senderId = self.currentUser._id;
     User.sendFriendRequest({id: receiverId}, self.currentUser, function(user) {
-      console.log(user);
       self.currentUser.requests.push(receiverId);
     })
   }
@@ -186,7 +181,7 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload, $state
 
     var user = TokenService.decodeToken();
     self.currentUser = CurrentUser.saveUser(user);
-    console.log(self.currentUser._id);
+    // console.log(self.currentUser._id);
     $state.go('profile', { id: self.currentUser._id });
     return self.currentUser;
   }
@@ -212,7 +207,6 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload, $state
   }
 
   function upload() {
-    console.log("This is working")
     Upload.upload({
       url: 'http://localhost:3000/upload',
       data: { file: self.file }
