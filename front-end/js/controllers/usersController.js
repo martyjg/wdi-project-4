@@ -65,7 +65,7 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload, $state
   function showUser(id) {
     self.inEditMode = false;
     User.get({id: id}, function(data) {
-      console.log("This is the shown user", data)
+      console.log(data)
       self.user = data.user;
       self.user.receivedComments = listUsersComments(self.user);
     })
