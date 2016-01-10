@@ -154,19 +154,19 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload, $state
     user.receivedComment = {};
     userId = user._id
 
-    for (var i = 0; i < self.all.length; i++) {
-      for (j = 0; j < self.all[i].comments.length; j++) {
-        if (self.all[i].comments[j].recipient == user._id) {
-          user.receivedComment = {
-            commenterName: self.all[i].local.username,
-            commenterPicture: self.all[i].local.picture,
-            commentDate: self.all[i].comments[j].created_at,
-            commentPost: self.all[i].comments[j].post
-          }
-          user.receivedComments.push(user.receivedComment);
-        }
-      }
-    }
+    // for (var i = 0; i < self.all.length; i++) {
+    //   for (j = 0; j < self.all[i].comments.length; j++) {
+    //     if (self.all[i].comments[j].recipient == user._id) {
+    //       user.receivedComment = {
+    //         commenterName: self.all[i].local.username,
+    //         commenterPicture: self.all[i].local.picture,
+    //         commentDate: self.all[i].comments[j].created_at,
+    //         commentPost: self.all[i].comments[j].post
+    //       }
+    //       user.receivedComments.push(user.receivedComment);
+    //     }
+    //   }
+    // }
 
     return user.receivedComments;
   }

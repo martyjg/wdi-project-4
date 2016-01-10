@@ -1,3 +1,6 @@
+//move getComments to userShow function. Save all comments where the shown user's id matches the recipient id in a comment document in the db
+//currently getComments only returns all comments with no specified id
+
 angular
 .module('MySpace')
 .controller('UsersController', UsersController);
