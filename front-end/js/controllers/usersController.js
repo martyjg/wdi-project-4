@@ -15,6 +15,7 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload, $state
   self.all                   = [];
   self.allComments           = [];
   self.user                  = {};
+  self.settingUser           = {};
   self.user.receivedComments = [];
   self.getUsers              = getUsers;
   self.currentUser           = CurrentUser.getUser();
@@ -50,6 +51,7 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload, $state
 
   function getComments() {
     User.commentsQuery(function(data) {
+      console.log("Here is comments", data)
       return self.allComments = data.comments;
     })
   }
@@ -66,8 +68,11 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload, $state
     self.inEditMode = false;
     User.get({id: id}, function(data) {
       console.log(data)
-      self.user = data.user;
-      self.user.receivedComments = listUsersComments(self.user);
+      self.settingUser = data.user;
+      self.settingUser.receivedComments = listUsersComments(self.settingUser);
+      self.user = self.settingUser;
+      console.log("This should be self.user ", self.user);
+      // self.user = data.user;
     })
     // checkCurrentUser(user);
   }
@@ -149,6 +154,8 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload, $state
     user.receivedComment = {};
     userId = user._id
 
+    // console.log(self.allComments)
+
     for (var i = 0; i < self.all.length; i++) {
       for (j = 0; j < self.all[i].comments.length; j++) {
         if (self.all[i].comments[j].recipient == user._id) {
@@ -175,7 +182,8 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload, $state
 
     if (token) {
       self.getUsers();
-      self.getComments();
+      // self.getComments();
+      console.log("logged in, here are comments", self.allComments)
       TokenService.setToken(token);
     }
 
