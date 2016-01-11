@@ -59,7 +59,15 @@ header {
   width: 96%;
 }
 
+.register-form div input {
+  width: 96%;
+}
+
 .login-form > * {
+  margin-top: 10px;
+}
+
+.register-form > * {
   margin-top: 10px;
 }
 
@@ -67,7 +75,17 @@ header {
   text-align: center;
 }
 
+.register-form {
+  text-align: center;
+}
+
 .login-form button {
+  margin: auto;
+  margin-top: 10px;
+  width: 100px;
+}
+
+.register-form button {
   margin: auto;
   margin-top: 10px;
   width: 100px;
@@ -176,6 +194,11 @@ h1 {
 }
 
 .home {
+  margin: 0 auto;
+  width: 800px;
+}
+
+.register {
   margin: 0 auto;
   width: 800px;
 }
