@@ -12,14 +12,14 @@ var jwt            = require('jsonwebtoken');
 var expressJWT     = require('express-jwt');
 var uuid           = require('uuid');
 
-var PORT           = process.env.PORT || 3000;
+var port           = process.env.PORT || 3000;
 
 var app            = express();
 
 var config         = require('./config/config');
 var secret         = require('./config/config').secret;
 
-var mongoUri = process.env.MONGOLAB_URI || config.database;
+var mongoUri = config.database;
 
 mongoose.connect(mongoUri);
 
@@ -80,8 +80,7 @@ app.use(function (err, req, res, next) {
 var routes = require('./config/routes');
 app.use("/api", routes);
 
-app.use(express.static('front-end'));
+app.use(express.static(__dirname + '/public'));
 
-app.listen(PORT);
-
-console.log("Listening on..." + PORT)
+app.listen(port);
+console.log("Listening on..." + port);

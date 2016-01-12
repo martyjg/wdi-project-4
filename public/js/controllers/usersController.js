@@ -20,7 +20,7 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload, $state
   self.getUsers              = getUsers;
   self.currentUser           = CurrentUser.getUser();
   self.checkCurrentUser      = checkCurrentUser;
-  self.getComments           = getComments;
+  // self.getComments           = getComments;
   self.register              = register;
   self.showUser              = showUser;
   self.editProfile           = editProfile;
@@ -49,12 +49,11 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload, $state
    });
   }
 
-  function getComments() {
-    User.commentsQuery(function(data) {
-      console.log("Here is comments", data)
-      return self.allComments = data.comments;
-    })
-  }
+  // function getComments() {
+  //   User.commentsQuery(function(data) {
+  //     return self.allComments = data.comments;
+  //   })
+  // }
 
   function checkCurrentUser(user) {
     if (user._id == self.currentUser._id) {
@@ -67,19 +66,16 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload, $state
   function showUser(id) {
     self.inEditMode = false;
     User.get({id: id}, function(data) {
-      console.log(data)
-      self.settingUser = data.user;
-      self.settingUser.receivedComments = listUsersComments(self.settingUser);
-      self.user = self.settingUser;
-      console.log("This should be self.user ", self.user);
-      // self.user = data.user;
+      User.received({id: id}, function(comments){
+        data.user.receivedComments = comments.comments;
+        self.user = data.user;
+      })
     })
-    // checkCurrentUser(user);
   }
 
   function editProfile(user) {
-    // console.log(currentUser)
     User.update({id: user._id}, user, function(user) {
+      //?
     })
   }
 
@@ -100,9 +96,7 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload, $state
   }
 
   function getRequests() {
-
     User.pending({id: self.currentUser._id}, function(data) {
-      console.log(data);
       return self.currentUser.pendingRequests = data.pending;
     })
   }
@@ -129,19 +123,23 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload, $state
     }
   }
 
+  /* Saving a new comment */
   function saveComment(user) {
-    currentTime = Date.now();
+    var currentTime = Date.now();
     self.currentUser.comment.created_at = currentTime;
     self.currentUser.comment.recipient = user._id;
+
     user.receivedComment = {
-      commenterName: self.currentUser.local.username,
-      commenterPicture: self.currentUser.local.picture,
-      commentDate: self.currentUser.comment.created_at,
-      commentPost: self.currentUser.comment.post
+      username: self.currentUser.local.username,
+      picture: self.currentUser.local.picture,
+      created_at: self.currentUser.comment.created_at,
+      post: self.currentUser.comment.post
     };
+    
     // var arrayEnd = self.user.receivedComments.length
     // self.user.receivedComments.splice(arrayEnd, 0, user.receivedComment);
     self.user.receivedComments.push(user.receivedComment);
+    
     User.saveComment({id: user._id}, self.currentUser, function(user) {
       // console.log(user.receivedComment);
       self.currentUser.comment.post = "";
@@ -149,29 +147,31 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload, $state
 
   }
 
-  function listUsersComments(user) {
-    user.receivedComments = [];
-    user.receivedComment = {};
-    userId = user._id
 
-    // console.log(self.allComments)
+  // function listUsersComments(user) {
+  //   console.log("listUsersComments(user)");
 
-    for (var i = 0; i < self.all.length; i++) {
-      for (j = 0; j < self.all[i].comments.length; j++) {
-        if (self.all[i].comments[j].recipient == user._id) {
-          user.receivedComment = {
-            commenterName: self.all[i].local.username,
-            commenterPicture: self.all[i].local.picture,
-            commentDate: self.all[i].comments[j].created_at,
-            commentPost: self.all[i].comments[j].post
-          }
-          user.receivedComments.push(user.receivedComment);
-        }
-      }
-    }
+  //   // user.receivedComments = [];
+  //   user.receivedComment = {};
+  //   userId = user._id
 
-    return user.receivedComments;
-  }
+  //   // console.log(self.allComments)
+  //   for (var i = 0; i < self.all.length; i++) {
+  //     for (j = 0; j < self.all[i].comments.length; j++) {
+  //       if (self.all[i].comments[j].recipient == user._id) {
+  //         user.receivedComment = {
+  //           commenterName: self.all[i].local.username,
+  //           commenterPicture: self.all[i].local.picture,
+  //           commentDate: self.all[i].comments[j].created_at,
+  //           commentPost: self.all[i].comments[j].post
+  //         }
+  //         user.receivedComments.push(user.receivedComment);
+  //       }
+  //     }
+  //   }
+
+  //   return user.receivedComments;
+  // }
 
   function hideRequest(id) {
     $("#" + id).hide();
@@ -180,16 +180,14 @@ function UsersController(User, TokenService, CurrentUser, $state, Upload, $state
   function handleLogin(res) {
     var token = res.token ? res.token : null;
 
-    if (token) {
-      self.getUsers();
-      // self.getComments();
-      console.log("logged in, here are comments", self.allComments)
-      TokenService.setToken(token);
-    }
+    if (!token) return $state.go('register');
 
-    var user = TokenService.decodeToken();
-    self.currentUser = CurrentUser.saveUser(user);
-    // console.log(self.currentUser._id);
+    self.getUsers();
+    TokenService.setToken(token);
+    self.currentUser = TokenService.decodeToken();
+    console.log(self.currentUser._id);
+
+    CurrentUser.saveUser(self.currentUser);
     $state.go('profile', { id: self.currentUser._id });
     return self.currentUser;
   }

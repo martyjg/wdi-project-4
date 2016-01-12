@@ -1,21 +1,31 @@
+<ng-include src="'/views/partials/_nav.html'"></ng-include>
+
 <section ng-hide="users.checkLoggedIn()" class="pure-g register">
 
   <section class="pure-u-14-24 left-col" id="register">
     <div class="pure-g">
       <h2 class="pure-u-1">Register</h2>
-      <form name="pure-g register-form" ng-submit="users.register()" novalidate>
+      <form name="users.registerForm" class="pure-g register-form" ng-submit="users.register()" novalidate>
 
         <label for="username" class="pure-u-10-24">Username</label>
+        <div class="pure-u-14-24">
         <input type="text" name="username" placeholder="Username" ng-model="users.user.username">
+        </div>
 
-        <label for="fullname">Full name</label>
+        <label for="fullname" class="pure-u-10-24">Full name</label>
+        <div class="pure-u-14-24">
         <input type="text" name="fullname" placeholder="Fullname" ng-model="users.user.fullname">
+        </div>
 
-        <label for="email">Email</label>
+        <label for="email" class="pure-u-10-24">Email</label>
+        <div class="pure-u-14-24">
         <input type="text" name="email" placeholder="Email" ng-model="users.user.email" required>
+        </div>
 
-        <label for="password">Password</label>
+        <label for="password" class="pure-u-10-24">Password</label>
+        <div class="pure-u-14-24">
         <input type="password" name="password" placeholder="Password" ng-model="users.user.password" required>
+        </div>
 
         <button type="submit">Register</button>
 

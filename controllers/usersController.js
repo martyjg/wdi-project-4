@@ -25,7 +25,7 @@ function usersUpdate(req, res){
   User.findById(req.params.id,  function(err, user) {
     if (err) return res.status(500).json({message: "Something went wrong!"});
     if (!user) return res.status(404).json({message: 'No user found.'});
-    console.log(req.body)
+    // console.log(req.body)
 
     if (req.body.local.email) user.local.email = req.body.local.email;
     if (req.body.local.password) user.local.password = req.body.local.password;
@@ -57,14 +57,13 @@ function usersSendFriendRequest(req, res) {
   User.findById(sender._id, function(err, user){
     for (i = 0; i < user.requests.length; i++) {
       if (user.requests[i] == receiverId) {
-        console.log("Already exists", receiverId)
+        // console.log("Already exists", receiverId)
         return res.status(500).json({ message: "Something went wrong!" })
       }
     }
     user.requests.push(receiverId);
     user.save(function(err){
       if (err) return res.status(500).json({message: "Something went wrong!"});
-
       res.status(201).json({message: 'Request Sent.'});
     })
   })

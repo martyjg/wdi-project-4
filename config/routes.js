@@ -15,6 +15,9 @@ router.route('/users/:id')
   .get(usersController.usersShow)
   .put(usersController.usersUpdate);
 
+router.route('/users/:id/commentsreceived')
+  .get(commentsController.commentsReceived);
+
 router.route('/users/:id/pending')
   .get(usersController.usersPending);
 
@@ -30,6 +33,5 @@ router.route('/users/:id/denyfriendrequest')
 router.route('/comments')
   .get(commentsController.commentsIndex)
   .post(commentsController.commentsCreate)
-
 
 module.exports = router;

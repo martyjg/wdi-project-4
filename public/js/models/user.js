@@ -22,7 +22,8 @@ function User($resource, API){
     'update':              { method: 'PUT' },
     'register':            { url: API + '/register', method: "POST" },
     'login':               { url: API + '/login', method: "POST" },
-    'pending':             { url: API + '/users/:id/pending', method: "GET" }
+    'pending':             { url: API + '/users/:id/pending', method: "GET" },
+    'received':            { url: API + '/users/:id/commentsreceived', method: "GET" },
     }
   );
 }

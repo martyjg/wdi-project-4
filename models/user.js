@@ -20,7 +20,6 @@ var userSchema = mongoose.Schema({
   },
   requests: [{ type: mongoose.Schema.ObjectId, ref: "User" }],
   friends: [{ type: mongoose.Schema.ObjectId, ref: "User" }],
-  // comments: [{ type: mongoose.Schema.ObjectId, ref: "Comment" }]
   comments: [Comment.schema]
 },{
   toObject: { virtuals: true },

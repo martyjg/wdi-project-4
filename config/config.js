@@ -1,4 +1,4 @@
 module.exports = {
   'secret': 'theoriginalmyspace',
-  'database': 'mongodb://localhost:27017/MySpace'
+  'database': process.env.MONGOLAB_URI || 'mongodb://localhost:27017/MySpace'
 };
