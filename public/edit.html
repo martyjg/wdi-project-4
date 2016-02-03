@@ -1,26 +1,43 @@
 <ng-include src="'/views/partials/_nav.html'"></ng-include>
 
-<h1>A form to edit the user goes here. They should be adding a picture and updating their mood n stuff</h1>
+<section class="pure-g edit">
+  <section id="edit" class="pure-u-14-24 left-col">
+  <div class="pure-g">
+  <h2 class="pure-u-1">My Account</h2>
+    <form name="users.editForm" class="pure-g edit-form" ng-submit="users.editProfile(users.currentUser)" novalidate>
 
-<section id="edit" ng-show="users.checkLoggedIn()">
-  <form name="users.editForm" ng-submit="users.editProfile(users.currentUser)" novalidate>
+      <label for="username" class="pure-u-10-24">Username</label>
+      <div class="pure-u-14-24">
+      <input type="text" name="username" placeholder="Username" ng-model="users.currentUser.local.username">
+      </div>
 
-    <label for="username">Username</label>
-    <input type="text" name="username" placeholder="Username" ng-model="users.currentUser.local.username">
+      <label for="fullname" class="pure-u-10-24">Full name</label>
+      <div class="pure-u-14-24">
+      <input type="text" name="fullname" placeholder="Fullname" ng-model="users.currentUser.local.fullname">
+      </div>
 
-    <label for="fullname">Full name</label>
-    <input type="text" name="fullname" placeholder="Fullname" ng-model="users.currentUser.local.fullname">
+      <label for="email" class="pure-u-10-24">Email</label>
+      <div class="pure-u-14-24">
+      <input type="text" name="email" placeholder="Email" ng-model="users.currentUser.local.email" required>
+      </div>
 
-    <label for="email">Email</label>
-    <input type="text" name="email" placeholder="Email" ng-model="users.currentUser.local.email" required>
+      <label for="email" class="pure-u-10-24">Profile Picture (URL)</label>
+      <div class="pure-u-14-24">
+      <input type="text" name="picture" placeholder="Profile Picture" ng-model="users.currentUser.local.picture">
+      </div>
 
-    <label for="email">Profile Picture</label>
-    <input type="text" name="picture" placeholder="Profile Picture" ng-model="users.currentUser.local.picture">
+      <label for="password" class="pure-u-10-24">Password</label>
+      <div class="pure-14-24">
+      <input type="password" name="password" placeholder="Password" ng-model="users.currentUser.local.password" required>
+      </div>
 
-    <label for="password">Password</label>
-    <input type="password" name="password" placeholder="Password" ng-model="users.currentUser.local.password" required>
+      <button type="submit">Submit</button>
 
-    <button type="submit">Submit</button>
+    </form>
+    </div>
+  </section>
 
-  </form>
+  <div class="pure-u-sm-10-24 pure-u-1 right-col">
+  </div>
+
 </section>
